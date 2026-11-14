@@ -1,0 +1,17 @@
+# Quality classification on BUT QDB.
+data_dir: data/raw/butqdb
+processed_dir: data/processed/butqdb
+fs: 250            # ECG analysis rate (resampled from 1000 Hz)
+fs_cnn: 100        # CNN input rate
+window_s: 10       # non-overlapping windows; a window is labelled only if fully one class
+mains_hz: 50       # Czech Republic mains frequency
+workers: 3         # parallel records when building features (about 1.5 GB RAM each)
+seed: 0
+
+cnn:
+  epochs: 8
+  samples_per_epoch: 12000
+  batch: 128
+  lr: 0.001
+
+out_dir: reports

@@ -79,7 +79,9 @@ def read_beat_record(root: Path, name: str, channel: int = 0) -> BeatRecord:
 
 
 def butqdb_records(root: Path) -> list[str]:
-    return [r.strip() for r in (Path(root) / "RECORDS").read_text().split() if r.strip()]
+    """Record names. RECORDS lists signal paths such as '100001/100001_ECG', so take the folder."""
+    names = [r.strip().split("/")[0] for r in (Path(root) / "RECORDS").read_text().split()]
+    return sorted({n for n in names if n})
 
 
 def subject_of(record: str) -> str:

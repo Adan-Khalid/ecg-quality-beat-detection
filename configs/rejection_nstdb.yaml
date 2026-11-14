@@ -1,0 +1,10 @@
+# Beat detection with and without the quality gate on the MIT-BIH Noise Stress Test DB.
+mitdb_dir: data/raw/mitdb
+nstdb_dir: data/raw/nstdb
+channel: 0          # MLII
+fs: 250             # same analysis rate as BUT QDB features
+window_s: 10
+mains_hz: 60        # MIT-BIH was recorded in the USA
+tolerance_ms: 150
+seed: 0
+out_dir: reports
