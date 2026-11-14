@@ -65,12 +65,15 @@ def main(argv=None) -> int:
         cx = cnn_inputs(x, fs, ws.starts, cfg["window_s"], fs_cnn=100, mains=cfg["mains_hz"])
         preds = {g: predict_windows(g, ws.ecg_feats, cnn_x=cx, models=models)
                  for g in ("rule", "gbm_ecg", "cnn_ecg")}
-        # Exact noise location: NSTDB minus the clean record (same samples, same gain).
+        # Exact noise location: NSTDB minus the clean record (same samples, same gain). The
+        # NSTDB files carry a different DC offset, so the per-window standard deviation of the
+        # difference is used, not its RMS. It is zero outside the noise blocks.
         nrec = len(x) // w
-        noise = x - resample(clean[base].signal, clean[base].fs, fs)[: len(x)]
-        noise_rms = np.sqrt(np.mean(noise[: nrec * w].reshape(nrec, w) ** 2, axis=1))
-        sig_rms = np.sqrt(np.mean(x[: nrec * w].reshape(nrec, w) ** 2, axis=1))
-        noisy = noise_rms > 0.01 * sig_rms
+        ref_sig = resample(clean[base].signal, clean[base].fs, fs)[: len(x)]
+        noise = x - ref_sig
+        noise_sd = noise[: nrec * w].reshape(nrec, w).std(axis=1)
+        sig_sd = ref_sig[: nrec * w].reshape(nrec, w).std(axis=1)
+        noisy = noise_sd > 0.02 * sig_sd
         preds["oracle"] = np.where(noisy, 3, 1)
         preds["none"] = np.ones(nrec, dtype=int)
 

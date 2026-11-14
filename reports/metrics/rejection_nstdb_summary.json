@@ -1,0 +1,407 @@
+{
+  "dataset": "MIT-BIH Noise Stress Test Database 1.0.0 (+ clean 118, 119)",
+  "channel": 0,
+  "tolerance_ms": 150,
+  "detector": "pan_tompkins (blockwise, 250 Hz)",
+  "by_snr": {
+    "clean": {
+      "none": {
+        "tp": 4265,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9997655883731833,
+        "f1": 0.9998827804477787,
+        "coverage": 1.0,
+        "reject_rate_noisy": NaN,
+        "reject_rate_clean": 0.0
+      },
+      "rule": {
+        "tp": 4265,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9997655883731833,
+        "f1": 0.9998827804477787,
+        "coverage": 1.0,
+        "reject_rate_noisy": NaN,
+        "reject_rate_clean": 0.0
+      },
+      "gbm_ecg": {
+        "tp": 4265,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9997655883731833,
+        "f1": 0.9998827804477787,
+        "coverage": 1.0,
+        "reject_rate_noisy": NaN,
+        "reject_rate_clean": 0.0
+      },
+      "cnn_ecg": {
+        "tp": 1987,
+        "fp": 0,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 1.0,
+        "f1": 1.0,
+        "coverage": 0.5,
+        "reject_rate_noisy": NaN,
+        "reject_rate_clean": 0.5
+      },
+      "oracle": {
+        "tp": 4265,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9997655883731833,
+        "f1": 0.9998827804477787,
+        "coverage": 1.0,
+        "reject_rate_noisy": NaN,
+        "reject_rate_clean": 0.0
+      }
+    },
+    "24": {
+      "none": {
+        "tp": 4265,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9997655883731833,
+        "f1": 0.9998827804477787,
+        "coverage": 1.0,
+        "reject_rate_noisy": 0.0,
+        "reject_rate_clean": 0.0
+      },
+      "rule": {
+        "tp": 4265,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9997655883731833,
+        "f1": 0.9998827804477787,
+        "coverage": 1.0,
+        "reject_rate_noisy": 0.0,
+        "reject_rate_clean": 0.0
+      },
+      "gbm_ecg": {
+        "tp": 4265,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9997655883731833,
+        "f1": 0.9998827804477787,
+        "coverage": 1.0,
+        "reject_rate_noisy": 0.0,
+        "reject_rate_clean": 0.0
+      },
+      "cnn_ecg": {
+        "tp": 1987,
+        "fp": 0,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 1.0,
+        "f1": 1.0,
+        "coverage": 0.5,
+        "reject_rate_noisy": 0.5,
+        "reject_rate_clean": 0.5
+      },
+      "oracle": {
+        "tp": 2387,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9995812395309883,
+        "f1": 0.9997905759162303,
+        "coverage": 0.5595409892130279,
+        "reject_rate_noisy": 1.0,
+        "reject_rate_clean": 0.0
+      }
+    },
+    "18": {
+      "none": {
+        "tp": 4263,
+        "fp": 21,
+        "fn": 2,
+        "sensitivity": 0.9995310668229778,
+        "ppv": 0.9950980392156863,
+        "f1": 0.9973096268569424,
+        "coverage": 1.0,
+        "reject_rate_noisy": 0.0,
+        "reject_rate_clean": 0.0
+      },
+      "rule": {
+        "tp": 4189,
+        "fp": 19,
+        "fn": 1,
+        "sensitivity": 0.9997613365155131,
+        "ppv": 0.9954847908745247,
+        "f1": 0.9976184805906169,
+        "coverage": 0.9811273276295924,
+        "reject_rate_noisy": 0.04430379746835443,
+        "reject_rate_clean": 0.0
+      },
+      "gbm_ecg": {
+        "tp": 4263,
+        "fp": 21,
+        "fn": 2,
+        "sensitivity": 0.9995310668229778,
+        "ppv": 0.9950980392156863,
+        "f1": 0.9973096268569424,
+        "coverage": 1.0,
+        "reject_rate_noisy": 0.0,
+        "reject_rate_clean": 0.0
+      },
+      "cnn_ecg": {
+        "tp": 1975,
+        "fp": 15,
+        "fn": 1,
+        "sensitivity": 0.9994939271255061,
+        "ppv": 0.992462311557789,
+        "f1": 0.9959657085224407,
+        "coverage": 0.4972320080523402,
+        "reject_rate_noisy": 0.5063291139240507,
+        "reject_rate_clean": 0.5
+      },
+      "oracle": {
+        "tp": 2387,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9995812395309883,
+        "f1": 0.9997905759162303,
+        "coverage": 0.5595409892130279,
+        "reject_rate_noisy": 1.0,
+        "reject_rate_clean": 0.0
+      }
+    },
+    "12": {
+      "none": {
+        "tp": 4209,
+        "fp": 516,
+        "fn": 56,
+        "sensitivity": 0.9868698710433763,
+        "ppv": 0.8907936507936508,
+        "f1": 0.9363737486095662,
+        "coverage": 1.0,
+        "reject_rate_noisy": 0.0,
+        "reject_rate_clean": 0.0
+      },
+      "rule": {
+        "tp": 3452,
+        "fp": 160,
+        "fn": 6,
+        "sensitivity": 0.9982648930017352,
+        "ppv": 0.955703211517165,
+        "f1": 0.9765205091937765,
+        "coverage": 0.8093701023288778,
+        "reject_rate_noisy": 0.43670886075949367,
+        "reject_rate_clean": 0.0
+      },
+      "gbm_ecg": {
+        "tp": 4014,
+        "fp": 413,
+        "fn": 51,
+        "sensitivity": 0.9874538745387453,
+        "ppv": 0.9067088321662525,
+        "f1": 0.9453603391427225,
+        "coverage": 0.9521158822955003,
+        "reject_rate_noisy": 0.10759493670886075,
+        "reject_rate_clean": 0.0
+      },
+      "cnn_ecg": {
+        "tp": 1771,
+        "fp": 177,
+        "fn": 17,
+        "sensitivity": 0.9904921700223713,
+        "ppv": 0.9091375770020534,
+        "f1": 0.9480728051391863,
+        "coverage": 0.44992450931051836,
+        "reject_rate_noisy": 0.6139240506329113,
+        "reject_rate_clean": 0.5
+      },
+      "oracle": {
+        "tp": 2387,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9995812395309883,
+        "f1": 0.9997905759162303,
+        "coverage": 0.5595409892130279,
+        "reject_rate_noisy": 1.0,
+        "reject_rate_clean": 0.0
+      }
+    },
+    "06": {
+      "none": {
+        "tp": 4134,
+        "fp": 1200,
+        "fn": 131,
+        "sensitivity": 0.9692848769050411,
+        "ppv": 0.7750281214848144,
+        "f1": 0.8613397228878008,
+        "coverage": 1.0,
+        "reject_rate_noisy": 0.0,
+        "reject_rate_clean": 0.0
+      },
+      "rule": {
+        "tp": 3047,
+        "fp": 292,
+        "fn": 19,
+        "sensitivity": 0.9938030006523157,
+        "ppv": 0.9125486672656484,
+        "f1": 0.9514441842310695,
+        "coverage": 0.7187651472941106,
+        "reject_rate_noisy": 0.6455696202531646,
+        "reject_rate_clean": 0.0
+      },
+      "gbm_ecg": {
+        "tp": 3427,
+        "fp": 587,
+        "fn": 61,
+        "sensitivity": 0.9825114678899083,
+        "ppv": 0.8537618335824614,
+        "f1": 0.913623033857638,
+        "coverage": 0.817690647682279,
+        "reject_rate_noisy": 0.4177215189873418,
+        "reject_rate_clean": 0.0
+      },
+      "cnn_ecg": {
+        "tp": 1253,
+        "fp": 42,
+        "fn": 3,
+        "sensitivity": 0.9976114649681529,
+        "ppv": 0.9675675675675676,
+        "f1": 0.982359858878871,
+        "coverage": 0.3160543532964268,
+        "reject_rate_noisy": 0.9177215189873418,
+        "reject_rate_clean": 0.5
+      },
+      "oracle": {
+        "tp": 2387,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9995812395309883,
+        "f1": 0.9997905759162303,
+        "coverage": 0.5595409892130279,
+        "reject_rate_noisy": 1.0,
+        "reject_rate_clean": 0.0
+      }
+    },
+    "00": {
+      "none": {
+        "tp": 4024,
+        "fp": 1602,
+        "fn": 241,
+        "sensitivity": 0.9434935521688159,
+        "ppv": 0.7152506221116246,
+        "f1": 0.8136689920129411,
+        "coverage": 1.0,
+        "reject_rate_noisy": 0.0,
+        "reject_rate_clean": 0.0
+      },
+      "rule": {
+        "tp": 2830,
+        "fp": 426,
+        "fn": 72,
+        "sensitivity": 0.9751895244658856,
+        "ppv": 0.8691646191646192,
+        "f1": 0.9191295875284183,
+        "coverage": 0.6789434219706405,
+        "reject_rate_noisy": 0.7215189873417722,
+        "reject_rate_clean": 0.0
+      },
+      "gbm_ecg": {
+        "tp": 2997,
+        "fp": 529,
+        "fn": 64,
+        "sensitivity": 0.9790918000653381,
+        "ppv": 0.8499716392512763,
+        "f1": 0.9099741915894944,
+        "coverage": 0.7169926515325913,
+        "reject_rate_noisy": 0.6455696202531646,
+        "reject_rate_clean": 0.0
+      },
+      "cnn_ecg": {
+        "tp": 1129,
+        "fp": 2,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9982316534040672,
+        "f1": 0.9991150442477876,
+        "coverage": 0.2840966280825365,
+        "reject_rate_noisy": 0.9873417721518987,
+        "reject_rate_clean": 0.5
+      },
+      "oracle": {
+        "tp": 2387,
+        "fp": 1,
+        "fn": 0,
+        "sensitivity": 1.0,
+        "ppv": 0.9995812395309883,
+        "f1": 0.9997905759162303,
+        "coverage": 0.5595409892130279,
+        "reject_rate_noisy": 1.0,
+        "reject_rate_clean": 0.0
+      }
+    },
+    "-6": {
+      "none": {
+        "tp": 3549,
+        "fp": 1744,
+        "fn": 716,
+        "sensitivity": 0.8321219226260258,
+        "ppv": 0.6705082184016625,
+        "f1": 0.7426239799121155,
+        "coverage": 1.0,
+        "reject_rate_noisy": 0.0,
+        "reject_rate_clean": 0.0
+      },
+      "rule": {
+        "tp": 2792,
+        "fp": 835,
+        "fn": 326,
+        "sensitivity": 0.895445798588839,
+        "ppv": 0.7697821891370279,
+        "f1": 0.8278724981467754,
+        "coverage": 0.7316573310362837,
+        "reject_rate_noisy": 0.5253164556962026,
+        "reject_rate_clean": 0.0594059405940594
+      },
+      "gbm_ecg": {
+        "tp": 2733,
+        "fp": 676,
+        "fn": 376,
+        "sensitivity": 0.8790607912512062,
+        "ppv": 0.801701378703432,
+        "f1": 0.8386007977907334,
+        "coverage": 0.7275603538893943,
+        "reject_rate_noisy": 0.6075949367088608,
+        "reject_rate_clean": 0.0049504950495049506
+      },
+      "cnn_ecg": {
+        "tp": 1110,
+        "fp": 1,
+        "fn": 8,
+        "sensitivity": 0.9928443649373881,
+        "ppv": 0.9990999099909991,
+        "f1": 0.9959623149394348,
+        "coverage": 0.2813286361348767,
+        "reject_rate_noisy": 0.9936708860759493,
+        "reject_rate_clean": 0.5
+      },
+      "oracle": {
+        "tp": 2237,
+        "fp": 2,
+        "fn": 150,
+        "sensitivity": 0.9371596145789695,
+        "ppv": 0.9991067440821796,
+        "f1": 0.9671422395157804,
+        "coverage": 0.5595409892130279,
+        "reject_rate_noisy": 1.0,
+        "reject_rate_clean": 0.0
+      }
+    }
+  }
+}

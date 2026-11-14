@@ -1,0 +1,22 @@
+2026-11-14 15:22:50 INFO python 3.12.10 on Windows-11-10.0.26300-SP0
+2026-11-14 15:22:54 INFO 118     none F1=1.000 | gbm F1=1.000 cov=1.00 | cnn F1=nan cov=0.00 | oracle F1=1.000
+2026-11-14 15:22:58 INFO 119     none F1=1.000 | gbm F1=1.000 cov=1.00 | cnn F1=1.000 cov=1.00 | oracle F1=1.000
+2026-11-14 15:23:00 INFO 118e24  none F1=1.000 | gbm F1=1.000 cov=1.00 | cnn F1=nan cov=0.00 | oracle F1=1.000
+2026-11-14 15:23:03 INFO 118e18  none F1=0.998 | gbm F1=0.998 cov=1.00 | cnn F1=nan cov=0.00 | oracle F1=1.000
+2026-11-14 15:23:06 INFO 118e12  none F1=0.945 | gbm F1=0.951 cov=0.97 | cnn F1=nan cov=0.00 | oracle F1=1.000
+2026-11-14 15:23:08 INFO 118e06  none F1=0.874 | gbm F1=0.924 cov=0.82 | cnn F1=nan cov=0.00 | oracle F1=1.000
+2026-11-14 15:23:11 INFO 118e00  none F1=0.830 | gbm F1=0.919 cov=0.73 | cnn F1=nan cov=0.00 | oracle F1=1.000
+2026-11-14 15:23:15 INFO 118e_6  none F1=0.742 | gbm F1=0.819 cov=0.75 | cnn F1=nan cov=0.00 | oracle F1=0.941
+2026-11-14 15:23:18 INFO 119e24  none F1=1.000 | gbm F1=1.000 cov=1.00 | cnn F1=1.000 cov=1.00 | oracle F1=1.000
+2026-11-14 15:23:21 INFO 119e18  none F1=0.996 | gbm F1=0.996 cov=1.00 | cnn F1=0.996 cov=0.99 | oracle F1=1.000
+2026-11-14 15:23:23 INFO 119e12  none F1=0.927 | gbm F1=0.939 cov=0.94 | cnn F1=0.948 cov=0.90 | oracle F1=1.000
+2026-11-14 15:23:26 INFO 119e06  none F1=0.848 | gbm F1=0.902 cov=0.82 | cnn F1=0.982 cov=0.63 | oracle F1=1.000
+2026-11-14 15:23:29 INFO 119e00  none F1=0.796 | gbm F1=0.900 cov=0.71 | cnn F1=0.999 cov=0.57 | oracle F1=1.000
+2026-11-14 15:23:32 INFO 119e_6  none F1=0.743 | gbm F1=0.861 cov=0.71 | cnn F1=0.996 cov=0.56 | oracle F1=0.996
+2026-11-14 15:23:32 INFO SNR clean F1 none 1.000  rule 1.000  gbm 1.000  cnn 1.000  oracle 1.000 | coverage gbm 1.00 cnn 0.50
+2026-11-14 15:23:32 INFO SNR 24    F1 none 1.000  rule 1.000  gbm 1.000  cnn 1.000  oracle 1.000 | coverage gbm 1.00 cnn 0.50
+2026-11-14 15:23:32 INFO SNR 18    F1 none 0.997  rule 0.998  gbm 0.997  cnn 0.996  oracle 1.000 | coverage gbm 1.00 cnn 0.50
+2026-11-14 15:23:32 INFO SNR 12    F1 none 0.936  rule 0.977  gbm 0.945  cnn 0.948  oracle 1.000 | coverage gbm 0.95 cnn 0.45
+2026-11-14 15:23:32 INFO SNR 06    F1 none 0.861  rule 0.951  gbm 0.914  cnn 0.982  oracle 1.000 | coverage gbm 0.82 cnn 0.32
+2026-11-14 15:23:32 INFO SNR 00    F1 none 0.814  rule 0.919  gbm 0.910  cnn 0.999  oracle 1.000 | coverage gbm 0.72 cnn 0.28
+2026-11-14 15:23:32 INFO SNR -6    F1 none 0.743  rule 0.828  gbm 0.839  cnn 0.996  oracle 0.967 | coverage gbm 0.73 cnn 0.28
