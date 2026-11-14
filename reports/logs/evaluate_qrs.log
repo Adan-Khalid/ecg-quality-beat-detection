@@ -1,0 +1,61 @@
+2026-11-14 12:09:30 INFO python 3.12.10 on Windows-11-10.0.26300-SP0
+2026-11-14 12:09:40 INFO record 100 (MLII)  pan_tompkins: Se=0.9995 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:09:49 INFO record 101 (MLII)  pan_tompkins: Se=1.0000 +P=0.9987  elgendi: Se=1.0000 +P=0.9987  wfdb_xqrs: Se=1.0000 +P=0.9987
+2026-11-14 12:09:58 INFO record 102 (V5)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:10:07 INFO record 103 (MLII)  pan_tompkins: Se=0.9994 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=0.9988 +P=1.0000
+2026-11-14 12:10:14 INFO record 104 (V5)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=0.9979  wfdb_xqrs: Se=0.9995 +P=0.9978
+2026-11-14 12:10:24 INFO record 105 (MLII)  pan_tompkins: Se=0.9935 +P=0.9701  elgendi: Se=0.9940 +P=0.9894  wfdb_xqrs: Se=0.9981 +P=0.9844
+2026-11-14 12:10:35 INFO record 106 (MLII)  pan_tompkins: Se=0.9988 +P=1.0000  elgendi: Se=0.9982 +P=0.9988  wfdb_xqrs: Se=0.9593 +P=0.9994
+2026-11-14 12:10:44 INFO record 107 (MLII)  pan_tompkins: Se=0.9950 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=0.9989 +P=1.0000
+2026-11-14 12:10:53 INFO record 108 (MLII)  pan_tompkins: Se=0.9703 +P=0.8714  elgendi: Se=0.9966 +P=0.9953  wfdb_xqrs: Se=0.9568 +P=0.9083
+2026-11-14 12:11:03 INFO record 109 (MLII)  pan_tompkins: Se=0.9990 +P=1.0000  elgendi: Se=0.9995 +P=1.0000  wfdb_xqrs: Se=0.9981 +P=0.9995
+2026-11-14 12:11:11 INFO record 111 (MLII)  pan_tompkins: Se=0.9994 +P=0.9989  elgendi: Se=0.9994 +P=1.0000  wfdb_xqrs: Se=0.9994 +P=1.0000
+2026-11-14 12:11:19 INFO record 112 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=0.9995
+2026-11-14 12:11:31 INFO record 113 (MLII)  pan_tompkins: Se=0.9993 +P=1.0000  elgendi: Se=0.9993 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:11:40 INFO record 114 (V5)  pan_tompkins: Se=0.9863 +P=0.9559  elgendi: Se=0.9994 +P=0.9957  wfdb_xqrs: Se=0.9944 +P=0.9987
+2026-11-14 12:11:49 INFO record 115 (MLII)  pan_tompkins: Se=0.9994 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:11:59 INFO record 116 (MLII)  pan_tompkins: Se=0.9886 +P=0.9990  elgendi: Se=0.9901 +P=0.9995  wfdb_xqrs: Se=0.9886 +P=0.9990
+2026-11-14 12:12:08 INFO record 117 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:12:17 INFO record 118 (MLII)  pan_tompkins: Se=1.0000 +P=0.9995  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:12:27 INFO record 119 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=0.9994  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:12:36 INFO record 121 (MLII)  pan_tompkins: Se=0.9987 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=0.9994 +P=0.9994
+2026-11-14 12:12:43 INFO record 122 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=0.9995
+2026-11-14 12:12:48 INFO record 123 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=0.9976 +P=1.0000
+2026-11-14 12:12:52 INFO record 124 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=0.9788 +P=1.0000
+2026-11-14 12:12:57 INFO record 200 (MLII)  pan_tompkins: Se=0.9986 +P=0.9991  elgendi: Se=0.9995 +P=0.9977  wfdb_xqrs: Se=0.9986 +P=0.9991
+2026-11-14 12:13:01 INFO record 201 (MLII)  pan_tompkins: Se=0.9882 +P=0.9987  elgendi: Se=0.9954 +P=1.0000  wfdb_xqrs: Se=0.9507 +P=1.0000
+2026-11-14 12:13:06 INFO record 202 (MLII)  pan_tompkins: Se=0.9995 +P=1.0000  elgendi: Se=0.9984 +P=1.0000  wfdb_xqrs: Se=0.9947 +P=1.0000
+2026-11-14 12:13:10 INFO record 203 (MLII)  pan_tompkins: Se=0.9875 +P=0.9919  elgendi: Se=0.9782 +P=0.9955  wfdb_xqrs: Se=0.9823 +P=0.9931
+2026-11-14 12:13:14 INFO record 205 (MLII)  pan_tompkins: Se=0.9986 +P=1.0000  elgendi: Se=0.9959 +P=1.0000  wfdb_xqrs: Se=0.9982 +P=1.0000
+2026-11-14 12:13:21 INFO record 207 (MLII)  pan_tompkins: Se=1.0000 +P=0.9981  elgendi: Se=0.9994 +P=0.9975  wfdb_xqrs: Se=0.9987 +P=0.9975
+2026-11-14 12:13:26 INFO record 208 (MLII)  pan_tompkins: Se=0.9951 +P=0.9963  elgendi: Se=0.9951 +P=0.9992  wfdb_xqrs: Se=0.9508 +P=0.9974
+2026-11-14 12:13:30 INFO record 209 (MLII)  pan_tompkins: Se=1.0000 +P=0.9992  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:13:34 INFO record 210 (MLII)  pan_tompkins: Se=0.9927 +P=0.9986  elgendi: Se=0.9941 +P=0.9995  wfdb_xqrs: Se=0.9773 +P=0.9986
+2026-11-14 12:13:43 INFO record 212 (MLII)  pan_tompkins: Se=0.9996 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:13:51 INFO record 213 (MLII)  pan_tompkins: Se=0.9989 +P=1.0000  elgendi: Se=0.9996 +P=1.0000  wfdb_xqrs: Se=0.9974 +P=1.0000
+2026-11-14 12:14:01 INFO record 214 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=0.9995 +P=1.0000
+2026-11-14 12:14:12 INFO record 215 (MLII)  pan_tompkins: Se=0.9996 +P=1.0000  elgendi: Se=0.9989 +P=1.0000  wfdb_xqrs: Se=0.9996 +P=1.0000
+2026-11-14 12:14:21 INFO record 217 (MLII)  pan_tompkins: Se=0.9973 +P=0.9989  elgendi: Se=0.9995 +P=0.9995  wfdb_xqrs: Se=0.9957 +P=0.9989
+2026-11-14 12:14:34 INFO record 219 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=0.9966 +P=1.0000
+2026-11-14 12:14:43 INFO record 220 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:14:53 INFO record 221 (MLII)  pan_tompkins: Se=0.9990 +P=1.0000  elgendi: Se=0.9995 +P=1.0000  wfdb_xqrs: Se=0.9881 +P=1.0000
+2026-11-14 12:15:03 INFO record 222 (MLII)  pan_tompkins: Se=0.9910 +P=0.9699  elgendi: Se=1.0000 +P=0.9991  wfdb_xqrs: Se=0.9991 +P=0.9995
+2026-11-14 12:15:13 INFO record 223 (MLII)  pan_tompkins: Se=0.9995 +P=1.0000  elgendi: Se=0.9995 +P=1.0000  wfdb_xqrs: Se=0.9986 +P=1.0000
+2026-11-14 12:15:20 INFO record 228 (MLII)  pan_tompkins: Se=0.9706 +P=0.9940  elgendi: Se=0.9988 +P=0.9895  wfdb_xqrs: Se=0.9977 +P=0.9947
+2026-11-14 12:15:30 INFO record 230 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:15:41 INFO record 231 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=1.0000 +P=1.0000  wfdb_xqrs: Se=1.0000 +P=1.0000
+2026-11-14 12:15:50 INFO record 232 (MLII)  pan_tompkins: Se=1.0000 +P=0.9966  elgendi: Se=1.0000 +P=0.9966  wfdb_xqrs: Se=1.0000 +P=0.9993
+2026-11-14 12:15:57 INFO record 233 (MLII)  pan_tompkins: Se=0.9992 +P=1.0000  elgendi: Se=0.9980 +P=1.0000  wfdb_xqrs: Se=0.9949 +P=1.0000
+2026-11-14 12:16:07 INFO record 234 (MLII)  pan_tompkins: Se=1.0000 +P=1.0000  elgendi: Se=0.9996 +P=1.0000  wfdb_xqrs: Se=0.9987 +P=1.0000
+2026-11-14 12:16:08 INFO all_records ec57 elgendi       Se=0.9982 +P=0.9989 F1=0.9986 (TP=91125 FP=96 FN=160) timing MAE 4.9 ms, 4.2s
+2026-11-14 12:16:08 INFO all_records ec57 pan_tompkins  Se=0.9968 +P=0.9947 F1=0.9958 (TP=90994 FP=481 FN=291) timing MAE 2.7 ms, 29.9s
+2026-11-14 12:16:08 INFO all_records ec57 wfdb_xqrs     Se=0.9935 +P=0.9974 F1=0.9955 (TP=90693 FP=237 FN=592) timing MAE 4.0 ms, 343.4s
+2026-11-14 12:16:08 INFO all_records whole_record elgendi       Se=0.9982 +P=0.9988 F1=0.9985 (TP=109299 FP=127 FN=195) timing MAE 4.9 ms, 4.2s
+2026-11-14 12:16:08 INFO all_records whole_record pan_tompkins  Se=0.9968 +P=0.9940 F1=0.9954 (TP=109148 FP=656 FN=346) timing MAE 2.7 ms, 29.9s
+2026-11-14 12:16:08 INFO all_records whole_record wfdb_xqrs     Se=0.9920 +P=0.9965 F1=0.9942 (TP=108622 FP=386 FN=872) timing MAE 3.9 ms, 343.4s
+2026-11-14 12:16:08 INFO non_paced_records ec57 elgendi       Se=0.9981 +P=0.9989 F1=0.9985 (TP=83819 FP=91 FN=159) timing MAE 3.6 ms, 3.8s
+2026-11-14 12:16:08 INFO non_paced_records ec57 pan_tompkins  Se=0.9967 +P=0.9943 F1=0.9955 (TP=83701 FP=479 FN=277) timing MAE 2.1 ms, 27.4s
+2026-11-14 12:16:08 INFO non_paced_records ec57 wfdb_xqrs     Se=0.9931 +P=0.9972 F1=0.9952 (TP=83397 FP=231 FN=581) timing MAE 3.5 ms, 313.1s
+2026-11-14 12:16:08 INFO non_paced_records whole_record elgendi       Se=0.9981 +P=0.9989 F1=0.9985 (TP=100544 FP=109 FN=189) timing MAE 3.5 ms, 3.8s
+2026-11-14 12:16:08 INFO non_paced_records whole_record pan_tompkins  Se=0.9967 +P=0.9935 F1=0.9951 (TP=100405 FP=652 FN=328) timing MAE 2.0 ms, 27.4s
+2026-11-14 12:16:08 INFO non_paced_records whole_record wfdb_xqrs     Se=0.9915 +P=0.9963 F1=0.9939 (TP=99878 FP=368 FN=855) timing MAE 3.3 ms, 313.1s

@@ -1,0 +1,11 @@
+# QRS detector validation on the MIT-BIH Arrhythmia Database.
+data_dir: data/raw/mitdb
+channel: 0            # first channel (MLII in 46 of 48 records)
+tolerance_ms: 150     # ANSI/AAMI EC57 match window
+learning_period_s: 300  # EC57 / bxb default: first 5 min not scored
+detectors:
+  - pan_tompkins      # this repo, from the 1985 paper
+  - elgendi           # this repo, two moving averages
+  - wfdb_xqrs         # library baseline (WFDB Python)
+out_dir: reports
+seed: 0

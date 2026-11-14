@@ -1,0 +1,29 @@
+# Shared figure style. Opaque white background so figures read on GitHub light and dark
+# themes. Colour cycle: Okabe-Ito (colour-blind safe).
+figure.facecolor: white
+figure.dpi: 100
+savefig.dpi: 150
+savefig.facecolor: white
+savefig.bbox: tight
+savefig.pad_inches: 0.15
+axes.facecolor: white
+axes.edgecolor: 333333
+axes.labelcolor: 222222
+axes.titlesize: 12
+axes.titleweight: bold
+axes.labelsize: 10
+axes.grid: True
+axes.spines.top: False
+axes.spines.right: False
+axes.prop_cycle: cycler('color', ['0072B2', 'E69F00', '009E73', 'D55E00', 'CC79A7', '56B4E9', 'F0E442', '000000'])
+grid.color: dddddd
+grid.linewidth: 0.6
+xtick.color: 333333
+ytick.color: 333333
+xtick.labelsize: 9
+ytick.labelsize: 9
+legend.frameon: False
+legend.fontsize: 9
+font.family: DejaVu Sans
+font.size: 10
+lines.linewidth: 1.2

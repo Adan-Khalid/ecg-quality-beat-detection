@@ -1,0 +1,70 @@
+{
+  "dataset": "MIT-BIH Arrhythmia Database 1.0.0",
+  "channel": 0,
+  "tolerance_ms": 150,
+  "evaluation": "whole record, all annotated beats, one-to-one matching",
+  "all_records": {
+    "elgendi": {
+      "tp": 109299,
+      "fp": 312,
+      "fn": 195,
+      "sensitivity": 0.9982190804975615,
+      "ppv": 0.9971535703533404,
+      "f1": 0.9976860409392757,
+      "records": 48,
+      "seconds": 5.56420669995714
+    },
+    "pan_tompkins": {
+      "tp": 109168,
+      "fp": 2875,
+      "fn": 326,
+      "sensitivity": 0.9970226679087438,
+      "ppv": 0.9743402086698857,
+      "f1": 0.9855509463430487,
+      "records": 48,
+      "seconds": 36.597846499993466
+    },
+    "wfdb_xqrs": {
+      "tp": 108622,
+      "fp": 768,
+      "fn": 872,
+      "sensitivity": 0.9920360933019161,
+      "ppv": 0.9929792485601975,
+      "f1": 0.9925074468668336,
+      "records": 48,
+      "seconds": 385.02126690000296
+    }
+  },
+  "non_paced_records": {
+    "elgendi": {
+      "tp": 100544,
+      "fp": 294,
+      "fn": 189,
+      "sensitivity": 0.9981237528913067,
+      "ppv": 0.9970844324560185,
+      "f1": 0.99760382197836,
+      "records": 44,
+      "seconds": 4.9894156999653205
+    },
+    "pan_tompkins": {
+      "tp": 100424,
+      "fp": 2870,
+      "fn": 309,
+      "sensitivity": 0.9969324848857872,
+      "ppv": 0.9722152303134741,
+      "f1": 0.9844187288937248,
+      "records": 44,
+      "seconds": 33.59564410010353
+    },
+    "wfdb_xqrs": {
+      "tp": 99878,
+      "fp": 750,
+      "fn": 855,
+      "sensitivity": 0.9915122154606733,
+      "ppv": 0.9925468060579561,
+      "f1": 0.9920292410148936,
+      "records": 44,
+      "seconds": 351.1952906000661
+    }
+  }
+}

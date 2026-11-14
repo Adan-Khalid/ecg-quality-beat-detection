@@ -1,0 +1,150 @@
+{
+  "dataset": "MIT-BIH Arrhythmia Database 1.0.0",
+  "channel": 0,
+  "tolerance_ms": 150,
+  "evaluation": "one-to-one matching; ventricular flutter episodes excluded. Protocol 'ec57' also skips the first 5 min (learning period, as in WFDB bxb); 'whole_record' scores every beat.",
+  "all_records": {
+    "ec57": {
+      "elgendi": {
+        "tp": 91125,
+        "fp": 96,
+        "fn": 160,
+        "sensitivity": 0.9982472476310457,
+        "ppv": 0.9989476107475252,
+        "f1": 0.9985973063899269,
+        "records": 48,
+        "timing_mae_ms": 4.9420819996951675,
+        "seconds": 4.192892299965024
+      },
+      "pan_tompkins": {
+        "tp": 90994,
+        "fp": 481,
+        "fn": 291,
+        "sensitivity": 0.9968121816289642,
+        "ppv": 0.9947417327138562,
+        "f1": 0.9957758809367476,
+        "records": 48,
+        "timing_mae_ms": 2.696545315564152,
+        "seconds": 29.92317110032309
+      },
+      "wfdb_xqrs": {
+        "tp": 90693,
+        "fp": 237,
+        "fn": 592,
+        "sensitivity": 0.9935148162348688,
+        "ppv": 0.9973935994721214,
+        "f1": 0.9954504294377521,
+        "records": 48,
+        "timing_mae_ms": 4.000124963705394,
+        "seconds": 343.3771110008238
+      }
+    },
+    "whole_record": {
+      "elgendi": {
+        "tp": 109299,
+        "fp": 127,
+        "fn": 195,
+        "sensitivity": 0.9982190804975615,
+        "ppv": 0.9988393983148429,
+        "f1": 0.9985291430659602,
+        "records": 48,
+        "timing_mae_ms": 4.8614859747624,
+        "seconds": 4.192892299965024
+      },
+      "pan_tompkins": {
+        "tp": 109148,
+        "fp": 656,
+        "fn": 346,
+        "sensitivity": 0.9968400094982374,
+        "ppv": 0.9940257185530582,
+        "f1": 0.9954308748825799,
+        "records": 48,
+        "timing_mae_ms": 2.7399087070359105,
+        "seconds": 29.92317110032309
+      },
+      "wfdb_xqrs": {
+        "tp": 108622,
+        "fp": 386,
+        "fn": 872,
+        "sensitivity": 0.9920360933019161,
+        "ppv": 0.9964589754880375,
+        "f1": 0.9942426156282322,
+        "records": 48,
+        "timing_mae_ms": 3.882117189274118,
+        "seconds": 343.3771110008238
+      }
+    }
+  },
+  "non_paced_records": {
+    "ec57": {
+      "elgendi": {
+        "tp": 83819,
+        "fp": 91,
+        "fn": 159,
+        "sensitivity": 0.9981066469789707,
+        "ppv": 0.9989155047074246,
+        "f1": 0.9985109120365958,
+        "records": 44,
+        "timing_mae_ms": 3.635512234696191,
+        "seconds": 3.7511107000755146
+      },
+      "pan_tompkins": {
+        "tp": 83701,
+        "fp": 479,
+        "fn": 277,
+        "sensitivity": 0.9967015170639929,
+        "ppv": 0.9943098123069612,
+        "f1": 0.9955042281663673,
+        "records": 44,
+        "timing_mae_ms": 2.0689716968733944,
+        "seconds": 27.355579700437374
+      },
+      "wfdb_xqrs": {
+        "tp": 83397,
+        "fp": 231,
+        "fn": 581,
+        "sensitivity": 0.9930815213508299,
+        "ppv": 0.9972377672549864,
+        "f1": 0.9951553047026956,
+        "records": 44,
+        "timing_mae_ms": 3.474079136872763,
+        "seconds": 313.0967140006833
+      }
+    },
+    "whole_record": {
+      "elgendi": {
+        "tp": 100544,
+        "fp": 109,
+        "fn": 189,
+        "sensitivity": 0.9981237528913067,
+        "ppv": 0.9989170715229551,
+        "f1": 0.9985202546353769,
+        "records": 44,
+        "timing_mae_ms": 3.545628447910037,
+        "seconds": 3.7511107000755146
+      },
+      "pan_tompkins": {
+        "tp": 100405,
+        "fp": 652,
+        "fn": 328,
+        "sensitivity": 0.99674386745158,
+        "ppv": 0.9935481955727955,
+        "f1": 0.9951434659794837,
+        "records": 44,
+        "timing_mae_ms": 2.013871597806661,
+        "seconds": 27.355579700437374
+      },
+      "wfdb_xqrs": {
+        "tp": 99878,
+        "fp": 368,
+        "fn": 855,
+        "sensitivity": 0.9915122154606733,
+        "ppv": 0.9963290305847615,
+        "f1": 0.9939147871170619,
+        "records": 44,
+        "timing_mae_ms": 3.347055630090933,
+        "seconds": 313.0967140006833
+      }
+    }
+  }
+}
