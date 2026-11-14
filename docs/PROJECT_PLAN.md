@@ -83,7 +83,7 @@ Leave-one-subject-out over 15 subjects: all records of a subject are held out to
 
 ## Acceptance criteria
 
-- Pan-Tompkins Se and +P above 99 % on MIT-BIH (the 1985 paper reports 99.75 % and 99.54 %).
+- Pan-Tompkins Se and +P above 99 % on MIT-BIH (the 1985 paper's abstract reports 99.3 % of QRS complexes detected).
 - Unit tests for every filter and detector stage, and a CI run on synthetic data.
 - Every number in the README read from a file in `reports/`.
 - The research question answered with a test and an interval, whichever way it falls.

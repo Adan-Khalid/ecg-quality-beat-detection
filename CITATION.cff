@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below, and cite the datasets (BUT QDB, MIT-BIH, NSTDB) listed in docs/DATA_CARD.md."
+title: "ECG signal quality and beat detection: a subject-independent quality gate for wearable ECG"
+type: software
+authors:
+  - family-names: Khalid
+    given-names: Adan
+    affiliation: "NUST College of Electrical and Mechanical Engineering"
+version: 1.0.0
+date-released: 2026-11-14
+license: MIT
+keywords:
+  - ECG
+  - signal quality
+  - QRS detection
+  - Pan-Tompkins
+  - wearable
+  - BUT QDB
+  - signal processing
+references:
+  - type: data
+    title: "Brno University of Technology ECG Quality Database (BUT QDB)"
+    authors:
+      - family-names: Nemcova
+        given-names: A.
+      - family-names: Smisek
+        given-names: R.
+      - family-names: Opravilova
+        given-names: K.
+      - family-names: Vitek
+        given-names: M.
+      - family-names: Smital
+        given-names: L.
+      - family-names: Marsanova
+        given-names: L.
+    doi: 10.13026/kah4-0w24
+    year: 2020
+    license: CC-BY-4.0
+  - type: data
+    title: "MIT-BIH Arrhythmia Database"
+    authors:
+      - family-names: Moody
+        given-names: G.
+      - family-names: Mark
+        given-names: R.
+    doi: 10.13026/C2F305
+    year: 2005
+  - type: article
+    title: "A Real-Time QRS Detection Algorithm"
+    authors:
+      - family-names: Pan
+        given-names: J.
+      - family-names: Tompkins
+        given-names: W. J.
+    journal: "IEEE Transactions on Biomedical Engineering"
+    year: 1985
+    doi: 10.1109/TBME.1985.325532
