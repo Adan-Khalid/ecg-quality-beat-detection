@@ -178,6 +178,39 @@ def fig_qrs_failure(record: str = "108", t0: float | None = None, dur: float = 8
 # --------------------------------------------------------------------------- quality
 
 
+def fig_feature_distributions() -> None:
+    """How the main SQIs and the motion feature separate the three expert classes."""
+    from ecgq.quality.dataset import load_labelled
+    from ecgq.quality.features import ACC_FEATURES, ECG_FEATURES
+
+    d = load_labelled(REPO_ROOT / "data" / "processed" / "butqdb")
+    feats = [("bsqi", "bSQI (detector agreement)", False),
+             ("tsqi", "tSQI (template correlation)", False),
+             ("ksqi", "kSQI (kurtosis)", True),
+             ("acc_mag_std", "motion: ACC magnitude std (mg)", True)]
+    fig, axs = plt.subplots(1, 4, figsize=(14, 3.6))
+    for ax, (key, title, log) in zip(axs, feats, strict=True):
+        if key in ECG_FEATURES:
+            v = d.X_ecg[:, ECG_FEATURES.index(key)]
+        else:
+            v = d.X_acc[:, ACC_FEATURES.index(key)]
+        data = [v[d.y == c] for c in (1, 2, 3)]
+        if log:
+            data = [np.log10(np.maximum(x, 1e-3)) for x in data]
+        parts = ax.violinplot(data, showmedians=True, showextrema=False)
+        for body, c in zip(parts["bodies"], (1, 2, 3), strict=True):
+            body.set_facecolor(QUALITY_COLORS[c])
+            body.set_alpha(0.7)
+        parts["cmedians"].set_color("black")
+        ax.set_xticks([1, 2, 3], ["class 1", "class 2", "class 3"])
+        ax.set_title(title, fontsize=10)
+        if log:
+            ax.set_ylabel("log10 value")
+    fig.suptitle(f"Feature distributions per expert class ({len(d.y):,} labelled 10 s windows, "
+                 "15 subjects)", fontweight="bold", y=1.04)
+    savefig(fig, FIG / "feature_distributions.png")
+
+
 def fig_quality() -> None:
     summ = json.loads((MET / "quality_loso_summary.json").read_text())
     per = pd.read_csv(MET / "quality_loso_per_subject.csv", dtype={"subject": str})
@@ -246,7 +279,7 @@ def fig_quality() -> None:
             ax.text(0.02, 0.97, f"pooled macro-F1 change, 95% CI\n[{ci[0]:+.3f}, {ci[1]:+.3f}]",
                     transform=ax.transAxes, va="top", fontsize=9)
         fig.suptitle("Do accelerometer features help on unseen subjects? (point size = windows)",
-                     fontweight="bold")
+                     fontweight="bold", y=1.03)
         savefig(fig, FIG / "research_question_acc.png")
 
 
@@ -256,9 +289,12 @@ def fig_rejection() -> None:
     labels = ["clean", "24", "18", "12", "6", "0", "-6"]
     x = np.arange(len(order))
     fig, ax = plt.subplots(1, 3, figsize=(14, 4.2))
+    # The CNN gate is left out of this figure: it rejects all of record 118 (right bundle
+    # branch block morphology, never seen in BUT QDB), so its points mix two different
+    # failure modes. Its numbers are in reports/metrics/rejection_nstdb_summary.json.
     styles = {"none": ("no gate", "#7F7F7F", "o"), "rule": ("rule-based gate", "#CC79A7", "^"),
-              "gbm_ecg": ("GBM gate", "#0072B2", "D"), "cnn_ecg": ("CNN gate", "#E69F00", "s"),
-              "oracle": ("oracle (knows noise)", "#000000", "")}
+              "gbm_ecg": ("GBM gate (ECG SQIs)", "#0072B2", "D"),
+              "oracle": ("oracle (knows where noise was added)", "#000000", "")}
     for g, (lab, col, mk) in styles.items():
         ls = ":" if g == "oracle" else "-"
         ax[0].plot(x, [s[o][g]["ppv"] for o in order], ls, marker=mk, color=col, label=lab)
@@ -270,7 +306,7 @@ def fig_rejection() -> None:
         a_.set(xlabel="electrode-motion noise SNR (dB)", title=t)
     ax[0].legend(loc="lower left")
     fig.suptitle("Pan-Tompkins on noisy ECG (MIT-BIH NST DB), with and without the quality gate",
-                 fontweight="bold")
+                 fontweight="bold", y=1.04)
     savefig(fig, FIG / "rejection_nstdb.png")
 
 
@@ -285,6 +321,7 @@ def main(argv=None) -> int:
         fig_qrs_per_record()
         fig_qrs_failure()
     if args.what in ("quality", "all"):
+        fig_feature_distributions()
         fig_quality()
     if args.what in ("rejection", "all"):
         fig_rejection()
