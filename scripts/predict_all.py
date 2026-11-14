@@ -20,7 +20,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from ecgq.io import subject_of
+from ecgq.io import official_window_mask, subject_of
 from ecgq.quality.dataset import load_labelled
 from ecgq.quality.models import balanced_weights, make_gbm
 from ecgq.utils import REPO_ROOT, get_logger, load_config, set_seed
@@ -53,7 +53,8 @@ def main(argv=None) -> int:
             np.savez_compressed(out / f"{f.stem}.npz", pred=pred, proba=proba,
                                 starts=z["starts"], fs=z["fs"])
             lab = z["labels"]
-            m = lab > 0
+            m = (lab > 0) & official_window_mask(f.stem, z["starts"], float(z["fs"]),
+                                                 float(z["win_s"]))
             rows.append({"record": f.stem, "subject": subject_of(f.stem), "windows": len(lab),
                          "labelled": int(m.sum()),
                          "agreement_labelled": float(np.mean(pred[m] == lab[m])) if m.any()

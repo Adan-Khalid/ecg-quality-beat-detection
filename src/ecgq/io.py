@@ -193,3 +193,44 @@ def read_butqdb_segment(root: Path, record: str, t0_s: float, dur_s: float,
     ab = min(int(ahdr.sig_len), int((t0_s + dur_s) * fa))
     acc = wfdb.rdrecord(str(base / f"{record}_ACC"), sampfrom=aa, sampto=ab).p_signal
     return ecg, np.nan_to_num(acc), fa
+
+
+# Annotated ranges used by the dataset authors' benchmark (1-based, inclusive, samples at
+# 1000 Hz), copied from choseDATA('all') in TESTrun_v01.m,
+# https://github.com/BioSig-BUT/BUT-QDB-supplement (MIT licence). The consensus CSV also
+# labels the first 13.1 h of 105001 as class 3, a stretch where the accelerometer is static
+# and the ECG is pure noise (device apparently off the body); the benchmark leaves it out,
+# and so does this project.
+OFFICIAL_RANGES: dict[str, list[tuple[int, int]]] = {
+    "100001": [(1, 87087000)],
+    "100002": [(28800001, 30000000), (57600001, 58800000)],
+    "103001": [(28800001, 30000000), (57600001, 58800000)],
+    "103002": [(28800001, 30000000), (57600001, 58800000)],
+    "103003": [(28800001, 30000000), (57600001, 58800000)],
+    "104001": [(28800001, 30000000), (57600001, 58800000)],
+    "105001": [(46800001, 139147000)],
+    "111001": [(1, 90645000)],
+    "113001": [(28800001, 30000000), (36120000, 37319999), (57600001, 58800000)],
+    "114001": [(11214751, 11334751), (11674751, 12874750), (28800001, 30000000),
+               (57600001, 58800000)],
+    "115001": [(28800001, 30000000), (57600001, 58800000)],
+    "118001": [(28800001, 30000000), (57600001, 58800000)],
+    "121001": [(28800001, 30000000), (57600001, 58800000)],
+    "122001": [(28800001, 30000000), (57600001, 58800000)],
+    "123001": [(28800001, 30000000), (57600001, 58800000)],
+    "124001": [(28800001, 30000000), (33700000, 34899999), (57600001, 58800000),
+               (65100000, 66299999)],
+    "125001": [(28800001, 30000000), (57600001, 58800000)],
+    "126001": [(28800001, 30000000), (57600001, 58800000)],
+}
+
+
+def official_window_mask(record: str, starts: np.ndarray, fs: float, win_s: float,
+                         fs_orig: float = 1000.0) -> np.ndarray:
+    """True for windows that lie fully inside the authors' annotated ranges."""
+    s0 = np.asarray(starts, dtype=np.int64) * int(round(fs_orig / fs))
+    s1 = s0 + int(round(win_s * fs_orig))
+    keep = np.zeros(len(s0), dtype=bool)
+    for a, b in OFFICIAL_RANGES.get(record, []):
+        keep |= (s0 >= a - 1) & (s1 <= b + 1)
+    return keep

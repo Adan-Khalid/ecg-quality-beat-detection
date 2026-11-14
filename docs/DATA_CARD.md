@@ -16,7 +16,7 @@ All three datasets are open access on PhysioNet and were checked on 2026-11-14 (
 | Content | 18 recordings of at least 24 h from 15 subjects (9 female, 6 male, aged 21 to 83), free-living conditions |
 | Signals | ECG at 1000 Hz, stored in microvolts (header gain 1.996 adu/uV); 3-axis accelerometer at 100 Hz in milli-g |
 | Labels | Sample-wise quality classes from three experts plus a consensus (12-column `*_ANN.csv`). Class 1: P, QRS and T clearly visible. Class 2: noisy, but QRS reliably detectable. Class 3: QRS not reliably detectable. 0 = not annotated. |
-| Annotated part | 3 recordings fully annotated (100001, 105001 from sample 46,800,001, 111001); the other 15 have two 20-minute annotated segments, plus 5 extra noisy segments |
+| Annotated part | 3 recordings fully annotated (100001, 105001 from sample 46,800,001, 111001); the other 15 have two 20-minute annotated segments, plus 5 extra noisy segments. This project uses exactly the ranges listed in the authors' benchmark script (`ecgq.io.OFFICIAL_RANGES`). |
 | Subject ID | First three digits of the record name (103001, 103002 and 103003 are one subject) |
 
 **Citation (dataset):** Nemcova A, Smisek R, Opravilova K, Vitek M, Smital L, Marsanova L. Brno University of Technology ECG Quality Database (BUT QDB) (version 1.0.0). PhysioNet. 2020. https://doi.org/10.13026/kah4-0w24
@@ -30,8 +30,10 @@ All three datasets are open access on PhysioNet and were checked on 2026-11-14 (
 - Splits are by subject (leave-one-subject-out), never by window, so no person appears in both training and test data. The official fixed split from the dataset authors (11 training records, 7 test records, from https://github.com/BioSig-BUT/BUT-QDB-supplement, MIT licence) is also evaluated.
 
 **Known issues and limits**
+- The consensus CSV also labels the first 13.1 h of 105001 as class 3. There the accelerometer is static and the ECG is noise (device apparently off the body). The authors' benchmark excludes that stretch and so does this project (DECISIONS D14).
+- Within the official ranges there are 26,880 pure 10 s windows: 16,284 class 1, 10,052 class 2 and 544 class 3. Class 3 occurs in 7 of the 15 subjects.
 - Three long, fully annotated records contribute most labelled windows. Training uses per-record and per-class weights so they do not dominate (see `docs/DECISIONS.md`).
-- Class 3 is rare in most records. Per-class F1 for class 3 depends on a few subjects and has wide uncertainty.
+- Class 3 is rare. Per-class F1 for class 3 depends on a few subjects and has wide uncertainty.
 - One device, one lead position and 15 people from one country. Results may not transfer to wrist ECG, other patches or other populations.
 - Annotators labelled the ECG without seeing the accelerometer, so accelerometer features are an independent input, not a label leak.
 

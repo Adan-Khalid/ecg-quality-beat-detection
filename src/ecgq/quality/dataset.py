@@ -7,7 +7,7 @@ from pathlib import Path
 
 import numpy as np
 
-from ecgq.io import subject_of
+from ecgq.io import official_window_mask, subject_of
 
 
 @dataclass
@@ -31,12 +31,16 @@ def load_labelled(processed_dir: Path, records: list[str] | None = None) -> Qual
     parts = {k: [] for k in ("X_ecg", "X_acc", "y", "record", "subject", "start", "cnn_x")}
     for f in files:
         d = np.load(f)
-        idx = d["cnn_idx"]
+        # Labelled windows (cnn_idx) restricted to the dataset authors' annotated ranges.
+        idx_all = d["cnn_idx"]
+        keep = official_window_mask(f.stem, d["starts"][idx_all], float(d["fs"]),
+                                    float(d["win_s"]))
+        idx = idx_all[keep]
         parts["X_ecg"].append(d["ecg_feats"][idx])
         parts["X_acc"].append(d["acc_feats"][idx])
         parts["y"].append(d["labels"][idx].astype(int))
         parts["record"].append(np.full(len(idx), f.stem))
         parts["subject"].append(np.full(len(idx), subject_of(f.stem)))
         parts["start"].append(d["starts"][idx])
-        parts["cnn_x"].append(d["cnn_x"])
+        parts["cnn_x"].append(d["cnn_x"][keep])
     return QualityData(**{k: np.concatenate(v) for k, v in parts.items()})

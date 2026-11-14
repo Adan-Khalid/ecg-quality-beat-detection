@@ -53,3 +53,11 @@ BUT QDB has no beat labels, so "how much does rejecting class 3 help beat detect
 ## D13. MATLAB cross-check not run
 
 The brief lists MATLAB for cross-checking the filter bench. MATLAB is not installed on this machine, so the cross-check uses Python only: the FIR form is tested against the paper's recursive form with `scipy.signal.lfilter`, and the frequency responses are plotted in `reports/figures/filter_responses.png`.
+
+## D14. Only the dataset authors' annotated ranges are used
+
+The consensus CSV of record 105001 labels its first 13.1 hours as class 3. In that stretch the accelerometer is static and the ECG is pure noise (see `reports/figures/day_quality_105001.png`), so the patch was apparently not on the body. Those hours held 4,680 of the 5,224 pure class 3 windows, which made class 3 look easy (pooled class 3 F1 0.96). The dataset authors' own benchmark (`choseDATA('all')` in `TESTrun_v01.m`, BUT-QDB-supplement repository) scores 105001 only from sample 46,800,001, and lists the annotated ranges of every record. This project now uses exactly those ranges everywhere (`ecgq.io.OFFICIAL_RANGES`): 26,880 labelled windows, of which 544 are class 3. The superseded results are kept in `reports/metrics/history/*_before_official_ranges.json`. Lesson: plot the whole recording before trusting a label count.
+
+## D15. CNN compute budget
+
+Each CNN is trained 15 times (once per held-out subject) on a 4-core laptop CPU. Training uses 6 epochs of 8,000 weighted samples (batch 128), fixed before seeing any result, so a full CNN evaluation runs in about an hour. More epochs might help the CNN; that is listed as a next step, not tuned on the test folds.

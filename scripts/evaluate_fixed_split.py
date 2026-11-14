@@ -3,7 +3,8 @@
 The split comes from TESTrun_v01.m in https://github.com/BioSig-BUT/BUT-QDB-supplement
 (MIT licence): 11 training records from 8 subjects, 7 test records from 7 other subjects.
 Their protocol scores every annotated sample, so window predictions are spread over the
-samples of each 10 s window and compared with the sample-wise consensus labels. This makes
+samples of each 10 s window and compared with the sample-wise consensus labels, inside the
+authors' annotated ranges only (ecgq.io.OFFICIAL_RANGES). This makes
 the numbers comparable with the SNR baseline reported in that paper (accuracy 74.08 %,
 F1 Q1 83.04 %, Q2 43.39 %, Q3 81.91 %, quoted from the paper, not re-run here).
 
@@ -18,6 +19,7 @@ from pathlib import Path
 
 import numpy as np
 
+from ecgq.io import official_window_mask
 from ecgq.quality.dataset import load_labelled
 from ecgq.quality.models import RuleClassifier, balanced_weights, make_gbm
 from ecgq.utils import REPO_ROOT, get_logger, load_config, save_json, set_seed
@@ -65,7 +67,8 @@ def main(argv=None) -> int:
             d = np.load(Path(proc) / f"{rec}.npz")
             X = d["ecg_feats"] if feats == "ecg" else np.hstack([d["ecg_feats"], d["acc_feats"]])
             counts = d["label_counts"]
-            annotated = counts[:, 1:].sum(axis=1) > 0
+            inside = official_window_mask(rec, d["starts"], float(d["fs"]), float(d["win_s"]))
+            annotated = (counts[:, 1:].sum(axis=1) > 0) & inside
             pred = np.asarray(clf.predict(X[annotated])).astype(int)
             for c_true in (1, 2, 3):
                 np.add.at(cm[c_true - 1], pred - 1, counts[annotated, c_true])

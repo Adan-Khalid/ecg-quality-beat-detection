@@ -153,9 +153,17 @@ def main(argv=None) -> int:
                                                         strict=True)},
     })
     summary.setdefault("models", {})
+    # Class 3 is concentrated in one subject; report scores without that subject too.
+    c3 = pred[pred.y == 3].subject.value_counts()
+    top = str(c3.index[0]) if len(c3) else None
+    summary["class3_dominant_subject"] = {"subject": top, "share_of_class3":
+                                          float(c3.iloc[0] / c3.sum()) if len(c3) else 0.0}
     for m in models_done:
         rep = quality_report(pred.y, pred[m])
         rep["mean_subject_macro_f1"] = float(per_subj[m].mean())
+        if top is not None:
+            rest = pred[pred.subject != top]
+            rep[f"pooled_excluding_subject_{top}"] = quality_report(rest.y, rest[m])
         if m in timings:
             rep["train_eval_seconds"] = timings[m]
         summary["models"][m] = rep

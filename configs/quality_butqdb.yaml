@@ -9,8 +9,8 @@ workers: 3         # parallel records when building features (about 1.5 GB RAM e
 seed: 0
 
 cnn:
-  epochs: 8
-  samples_per_epoch: 12000
+  epochs: 6
+  samples_per_epoch: 8000   # compute budget: CPU only, 15 folds x 2 models
   batch: 128
   lr: 0.001
 
