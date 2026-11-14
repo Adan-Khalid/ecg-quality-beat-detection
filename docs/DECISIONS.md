@@ -1,0 +1,55 @@
+# Decisions
+
+One entry per design decision: what was chosen, why, and what was rejected.
+
+## D1. Pan-Tompkins filters in FIR form
+
+The paper writes the low-pass and high-pass filters as recursive difference equations with poles on the unit circle that cancel zeros. Over a 24-hour recording (17 million samples at 200 Hz) the recursion accumulates floating-point round-off. The identical transfer functions are applied in non-recursive (FIR) form instead. A unit test checks that both forms give the same output.
+
+## D2. Pan-Tompkins start-up transient and search-back
+
+The first full-database run gave 1,460 false positives on record 117 alone. Cause: a false "beat" in the first 0.4 s (the causal filters' warm-up) created a short first RR interval. Every normal beat then looked late, search-back fired, and it accepted T waves because the T-wave rule was only applied to normal detections. Fix: ignore peaks during the warm-up and apply the T-wave slope test to search-back candidates too, as the paper's logic implies. Record 117 then had zero false positives. The summary of the run before the fix is kept in `reports/metrics/history/qrs_mitdb_summary_before_ptfix.json` (Pan-Tompkins +P 0.9743 with 2,875 false positives, before the flutter exclusion of D3).
+
+## D3. EC57 scoring conventions
+
+Ventricular flutter episodes (record 207) contain no beat labels, so any detection there would count as a false positive. ANSI/AAMI EC57 excludes them; so does this project. The "ec57" protocol also skips the first 5 minutes (the default learning period of WFDB `bxb`). The "whole_record" protocol is reported next to it.
+
+## D4. Elgendi parameters
+
+The 2010 paper defines the algorithm; the 2013 PLoS ONE paper tunes it (W1 = 97 ms, W2 = 611 ms, offset beta = 0.08, 8 to 20 Hz). This project uses the 2013 values and cites both.
+
+## D5. Detectors run in 60 s blocks on long recordings
+
+The Elgendi offset uses the mean energy of the whole input, and Pan-Tompkins thresholds adapt slowly. On a 24-hour recording one burst of motion artefact would raise thresholds for a long time. On BUT QDB both detectors therefore run on 60 s blocks with 5 s of overlap, keeping only beats from each block's centre. On MIT-BIH (30 min, mostly clean) they run on the whole record, as in the papers.
+
+## D6. 10 s non-overlapping windows, pure labels only
+
+10 s is long enough for 8 to 20 beats (needed for RR and template features) and short enough to localise artefact. Windows overlap nothing, so no two windows share samples. A window is used for training only when all its samples carry the same consensus class; mixed windows (at class boundaries) are still scored at sample level on the official split.
+
+## D7. Scale-invariant ECG features
+
+BUT QDB is in microvolts, MIT-BIH in millivolts, and electrode contact changes amplitude between people. Every ECG feature is a ratio, a correlation, a shape statistic or a count, so the same model can score both databases.
+
+## D8. Class and record weighting
+
+Three records are annotated for 24 h or more and fifteen for about 40 minutes, and class 1 dominates. Sample weights are 1 / (windows of that class) times 1 / sqrt(windows of that record), so rare classes count and the long records do not decide everything. The square root keeps some of the extra information in the long records.
+
+## D9. Leave-one-subject-out as the main protocol
+
+Published BUT QDB results often split windows at random, which puts the same person in training and test and inflates scores. This project holds out whole subjects (all of their records). The official fixed split from the dataset authors is reported too, for comparison with their baseline.
+
+## D10. Rule-based baseline fitted per fold
+
+Fixed literature thresholds (for example bSQI 0.9) were rejected because the thresholds depend on the detectors and the device. A grid search on the training subjects of each fold keeps the baseline fair and still interpretable: four thresholds.
+
+## D11. Small CPU CNN
+
+This laptop has no CUDA GPU (Intel UHD graphics, i7-10610U). The CNN has four conv blocks and about 45k parameters, takes 10 s at 100 Hz, and trains for 8 epochs of 12,000 weighted samples. Augmentation: ECG polarity flip (lead placement differs between people), amplitude scaling and small noise.
+
+## D12. Quality gate test on NSTDB, not BUT QDB
+
+BUT QDB has no beat labels, so "how much does rejecting class 3 help beat detection" cannot be measured there. NSTDB adds known noise to MIT-BIH records that do have expert beat labels. The models are trained only on BUT QDB, so this also tests transfer to another device and lead.
+
+## D13. MATLAB cross-check not run
+
+The brief lists MATLAB for cross-checking the filter bench. MATLAB is not installed on this machine, so the cross-check uses Python only: the FIR form is tested against the paper's recursive form with `scipy.signal.lfilter`, and the frequency responses are plotted in `reports/figures/filter_responses.png`.
