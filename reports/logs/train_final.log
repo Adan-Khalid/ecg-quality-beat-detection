@@ -1,0 +1,18 @@
+2026-11-14 15:07:42 INFO python 3.12.10 on Windows-11-10.0.26300-SP0
+2026-11-14 15:07:45 INFO training on 26880 windows from 15 subjects
+2026-11-14 15:07:54 INFO rule thresholds: {'b3': 0.8, 'b1': 0.98, 't1': 0.95, 's1': 0.8}
+2026-11-14 15:08:19 INFO training cnn_ecg
+2026-11-14 15:08:58 INFO     epoch 1 loss 0.4692
+2026-11-14 15:09:15 INFO     epoch 2 loss 0.2498
+2026-11-14 15:09:29 INFO     epoch 3 loss 0.1902
+2026-11-14 15:09:46 INFO     epoch 4 loss 0.1758
+2026-11-14 15:10:04 INFO     epoch 5 loss 0.1640
+2026-11-14 15:10:22 INFO     epoch 6 loss 0.1549
+2026-11-14 15:10:22 INFO training cnn_ecg_acc
+2026-11-14 15:10:43 INFO     epoch 1 loss 0.4766
+2026-11-14 15:10:57 INFO     epoch 2 loss 0.2770
+2026-11-14 15:11:13 INFO     epoch 3 loss 0.2281
+2026-11-14 15:11:28 INFO     epoch 4 loss 0.2043
+2026-11-14 15:11:40 INFO     epoch 5 loss 0.1885
+2026-11-14 15:11:54 INFO     epoch 6 loss 0.1767
+2026-11-14 15:11:54 INFO saved models to C:\Users\ADMIN\portfolio\projects\ecg-quality-beat-detection\models

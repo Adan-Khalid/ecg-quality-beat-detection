@@ -1,0 +1,5 @@
+2026-11-14 15:03:48 INFO python 3.12.10 on Windows-11-10.0.26300-SP0
+2026-11-14 15:04:10 INFO trained on 17517 windows from 11 records
+2026-11-14 15:04:10 INFO rule         sample-level acc 0.7150  F1 Q1 0.8159 Q2 0.4047 Q3 0.7261
+2026-11-14 15:04:11 INFO gbm_ecg      sample-level acc 0.8568  F1 Q1 0.8965 Q2 0.7761 Q3 0.8386
+2026-11-14 15:04:11 INFO gbm_ecg_acc  sample-level acc 0.8728  F1 Q1 0.9065 Q2 0.8106 Q3 0.8343
