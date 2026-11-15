@@ -45,8 +45,8 @@ Small, ordered tasks. Ticked items are done and committed.
 - [x] Social preview image, CITATION.cff, release notes
 - [x] Fresh-environment install and test run
 
-## Release steps (not done yet)
-- [ ] Refresh the GitHub CLI login with the `workflow` scope, then create the repo and push
-- [ ] Tag and release v1.0.0
-- [ ] Upload `assets/social-preview.png` in the repo settings and pin the repo
-- [ ] LinkedIn release post (`/linkedin`)
+## Release
+- [x] Public repository with CI passing on every push
+- [x] Tagged release v1.0.0
+- [ ] Social preview image uploaded in the repository settings
+- [ ] LinkedIn release post
