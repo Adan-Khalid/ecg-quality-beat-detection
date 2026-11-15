@@ -262,4 +262,4 @@ If this helps your work, please cite the repository (see [CITATION.cff](CITATION
 
 Code: MIT. Datasets keep their own licences (see the Data section).
 
-**Author:** Adan Khalid · [LinkedIn](https://www.linkedin.com/in/adan-khalid)
+**Author:** Adan Khalid ([GitHub](https://github.com/Adan-Khalid))
