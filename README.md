@@ -1,5 +1,3 @@
-<!-- Every number below is copied from reports/results_tables.md, generated from reports/metrics/ by scripts/make_tables.py. No em dashes. -->
-
 # ECG signal quality and beat detection
 
 **Tells a wearable ECG device which stretches of signal it can trust (clean, heartbeats only, or unusable), tested on people the model never saw: macro-F1 0.77 against 0.63 for a rule-based baseline. Includes a heartbeat detector written from the classic 1985 Pan-Tompkins paper that finds 99.68 % of beats on MIT-BIH.**
