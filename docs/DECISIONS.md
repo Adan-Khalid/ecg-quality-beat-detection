@@ -52,7 +52,7 @@ BUT QDB has no beat labels, so "how much does rejecting class 3 help beat detect
 
 ## D13. MATLAB cross-check not run
 
-The brief lists MATLAB for cross-checking the filter bench. MATLAB is not installed on this machine, so the cross-check uses Python only: the FIR form is tested against the paper's recursive form with `scipy.signal.lfilter`, and the frequency responses are plotted in `reports/figures/filter_responses.png`.
+The original plan included a MATLAB cross-check of the filter bench. MATLAB is not installed on this machine, so the cross-check uses Python only: the FIR form is tested against the paper's recursive form with `scipy.signal.lfilter`, and the frequency responses are plotted in `reports/figures/filter_responses.png`.
 
 ## D14. Only the dataset authors' annotated ranges are used
 

@@ -1,6 +1,6 @@
 # Learning notes
 
-One section per core item from the brief ("you implement yourself"). Each has the maths, the design choice, the alternatives rejected, and three interview questions with short answers. Read a section, close it, and explain the item out loud. If you can't, read the code it points to.
+One section per core component built from scratch in this project. Each covers the maths, the design choice, the alternatives rejected, and review questions with short answers, and points to the code and tests.
 
 ---
 
@@ -21,7 +21,7 @@ Code: `src/ecgq/filters.py`, tests: `tests/test_filters.py`, figure: `reports/fi
 - Adaptive notch or LMS cancellation of mains: useful when the mains frequency drifts, unnecessary here.
 - Wavelet denoising: the project's goal is to judge quality, not to repair the signal.
 
-**Interview questions**
+**Questions and answers**
 1. *Why 0.5 Hz and not 1 Hz for the high-pass?* Because ST-segment and T-wave energy reaches down to about 0.67 Hz; a higher cut-off distorts the ST level, which matters clinically. 0.5 Hz with a zero-phase filter is a common compromise for monitoring; diagnostic 12-lead ECG uses a much lower cut-off (around 0.05 Hz) to protect the ST segment completely.
 2. *What does filtfilt do to the filter order and phase?* It squares the magnitude response (doubling the effective order and the attenuation in dB) and gives exactly zero phase, so no delay. The cost is non-causality.
 3. *Why not slice to downsample from 1000 Hz to 250 Hz?* Slicing keeps every 4th sample without removing content above the new Nyquist (125 Hz), so that energy aliases into the band you analyse. A polyphase resampler low-passes first.
@@ -46,13 +46,13 @@ Code: `src/ecgq/detectors/pan_tompkins.py`, figure: `reports/figures/pan_tompkin
 **Design choices in this repo**
 - The paper's filters are recursive with poles on the unit circle cancelled by zeros. Over 17 million samples, float round-off would accumulate. The same transfer functions are applied as FIR filters; a unit test proves the outputs match.
 - Detections are mapped back through the filter delays (21 samples), rescaled to the input rate and refined to the largest absolute deflection of a 5 to 25 Hz band-pass within 60 ms. Timing error on MIT-BIH is 2.7 ms on average (EC57 protocol).
-- **Bug found and fixed** (see `docs/DECISIONS.md`, D2): a false beat during filter warm-up made the first RR interval short, so search-back fired after every normal beat and picked up T waves, because only normal detections got the T-wave test. Record 117 had 1,460 false positives; after the fix, zero. This is a good interview story: how you found it (per-record table sorted by errors), why it happened, and the minimal fix.
+- **Bug found and fixed** (see `docs/DECISIONS.md`, D2): a false beat during filter warm-up made the first RR interval short, so search-back fired after every normal beat and picked up T waves, because only normal detections got the T-wave test. Record 117 had 1,460 false positives; after the fix, zero. How it was found: sorting the per-record results by error count; why it happened; and the minimal fix.
 
 **Alternatives rejected**
-- Using a library implementation (NeuroKit2 `pantompkins1985`): the brief requires writing it from the paper.
+- Using a library implementation (NeuroKit2 `pantompkins1985`): the point of the project was to implement it from the paper.
 - Zero-phase band-pass instead of the paper's integer filters: easier, but no longer the published algorithm, and the T-wave and threshold logic is tuned to that filter's output.
 
-**Interview questions**
+**Questions and answers**
 1. *Why square instead of taking the absolute value?* Squaring is non-linear: it boosts large derivative values (QRS) far more than small ones (P and T waves, noise), so the integrated QRS hump stands well above everything else. Absolute value keeps the ratio linear.
 2. *What does the 150 ms integration window trade off?* Too short and one QRS gives several peaks; too long and the QRS merges with the T wave and the timing smears. 150 ms is about the widest normal QRS at 200 Hz (30 samples).
 3. *Why two threshold sets (integrated and band-passed)?* The integrated signal is robust but blurred in time; the band-passed signal keeps the QRS shape. Requiring both cuts false positives from wide, slow artefacts that integrate to a large value but have no sharp band-passed peak.
@@ -69,7 +69,7 @@ Code: `src/ecgq/detectors/elgendi.py`.
 
 **Watch-out**: the offset uses the mean energy of the whole input. On a 24-hour recording, one long artefact raises that mean for the whole day. On BUT QDB both detectors therefore run in 60 s blocks (D5).
 
-**Interview questions**
+**Questions and answers**
 1. *Why two moving averages?* The short one follows the QRS energy, the long one estimates the local energy around a whole beat. A QRS is where short-term energy rises above the local average; the comparison is self-normalising to amplitude.
 2. *Why reject blocks narrower than W1?* A real QRS keeps its energy high for about one QRS width; narrow blocks are spikes or noise.
 3. *Elgendi scores higher than Pan-Tompkins on MIT-BIH here. Why keep Pan-Tompkins?* It is the reference algorithm, it has the best timing accuracy here (2.7 ms vs 4.9 ms), and the project's quality index needs two detectors that fail differently.
@@ -93,7 +93,7 @@ Code: `src/ecgq/metrics.py` (`detector_agreement`), `src/ecgq/quality/features.p
 
 **Why scale-invariant**: amplitude depends on the device, the units (microvolts vs millivolts), electrode contact and the person. Ratios transfer between datasets.
 
-**Interview questions**
+**Questions and answers**
 1. *Why is detector agreement a quality measure at all?* Two detectors with different designs agree on clean ECG; noise fools them in different ways, so disagreement is evidence of noise without knowing the true beats.
 2. *Can bSQI be high on bad signal?* Yes: if both detectors fail the same way (for example both lock onto a periodic artefact, or both find nothing). That is why it is combined with template correlation, heart-rate plausibility and spectral indices.
 3. *Why is kurtosis useful?* ECG is mostly flat with rare sharp peaks, a heavy-tailed distribution. Noise and motion artefact make the distribution closer to Gaussian, so kurtosis falls.
@@ -106,7 +106,7 @@ Code: `acc_features` in `src/ecgq/quality/features.py`.
 
 Seven features per 10 s window: standard deviation of the acceleration magnitude, mean absolute jerk (derivative of the magnitude), largest per-axis standard deviation, log power 0.5 to 3 Hz (walking cadence) and 3 to 15 Hz (impacts, tremor), 1st to 99th percentile range, and tilt change (angle between the mean gravity vector in the first and last second, a posture change).
 
-**Interview questions**
+**Questions and answers**
 1. *Why the magnitude rather than single axes?* The patch orientation differs between people and changes with posture; the magnitude does not depend on orientation.
 2. *Can motion exist without ECG artefact, and the reverse?* Yes to both. A well-attached patch during walking can give clean ECG; a loose electrode can give artefact while the person is still. That is exactly why accelerometer features may help less than expected.
 3. *Why could the accelerometer still help for unseen subjects?* ECG artefact looks different in each person, while motion physics is similar for everyone, so motion features might generalise better than ECG features. The LOSO test checks this.
@@ -125,7 +125,7 @@ Code: `src/ecgq/quality/models.py`, results: `reports/metrics/quality_loso_summa
 
 **Class imbalance and long records** (D8): sample weight = 1/(class count) x 1/sqrt(record count), normalised.
 
-**Interview questions**
+**Questions and answers**
 1. *Why macro-F1 and not accuracy?* Class 1 dominates; a model that always says class 1 has high accuracy and is useless. Macro-F1 averages the F1 of each class, so class 3 counts as much as class 1.
 2. *Why global max pooling as well as average pooling?* An artefact can occupy one second of the ten; averaging would dilute it, max pooling keeps the strongest local evidence anywhere in the window.
 3. *Gradient boosting vs random forest?* A forest averages independent deep trees (reduces variance); boosting adds shallow trees sequentially, each correcting the previous errors (reduces bias). Boosting usually wins on tabular features like SQIs, at the cost of more tuning.
@@ -140,7 +140,7 @@ Code: `scripts/evaluate_quality.py`.
 
 **Paired comparison**: for the question "do accelerometer features help on unseen subjects?", each subject gives one macro-F1 with and one without accelerometer features, so the comparison is paired. The Wilcoxon signed-rank test ranks the absolute per-subject differences and checks whether positive and negative ranks balance; it does not assume normality, which suits 15 values. A bootstrap over subjects (resample the 15 subjects with replacement 2,000 times, recompute the pooled macro-F1 difference) gives a 95 % confidence interval that respects the clustering of windows within subjects.
 
-**Interview questions**
+**Questions and answers**
 1. *Why not split windows at random?* Adjacent windows of the same person are nearly identical; the model can memorise the person and the score says nothing about new users. Several published BUT QDB results have this problem.
 2. *Why bootstrap subjects, not windows?* Windows within a subject are not independent. Resampling windows would treat 30,000 correlated windows as independent evidence and give a falsely narrow interval; the real sample size is 15 subjects.
 3. *What did this project conclude about the accelerometer?* With gradient boosting: a small pooled gain, CI [+0.002, +0.037], but only 9 of 15 subjects improved (p = 0.23). With the CNN: worse for 10 of 15 subjects (p = 0.048). So no consistent benefit on unseen people; the likely reason is that most class 3 ECG here happens while the person is still.
@@ -155,7 +155,7 @@ Code: `scripts/evaluate_quality.py`.
 - Ventricular flutter episodes are excluded (no beat labels inside them). The EC57 protocol skips the first 5 minutes as the learning period. Paced records are reported with and without.
 - Timing error of matched beats is reported too, because a 150 ms window hides timing problems (Porr and Macfarlane 2024).
 
-**Interview question**: *Why is the gross (pooled) Se different from the average of per-record Se?* Pooling weights each record by its number of beats; averaging per record weights every record equally, so a short, difficult record moves the average more. EC57 asks for both.
+**Question**: *Why is the gross (pooled) Se different from the average of per-record Se?* Pooling weights each record by its number of beats; averaging per record weights every record equally, so a short, difficult record moves the average more. EC57 asks for both.
 
 ---
 
@@ -170,7 +170,7 @@ Code: `scripts/evaluate_rejection.py`, figure: `reports/figures/rejection_nstdb.
 2. *Mislabelled-looking class 3* (record 105001, D14): 13 hours of a detached device made class 3 look easy (F1 0.96). After using the authors' benchmark ranges, class 3 F1 is 0.63. Lesson: plot the whole recording before trusting label counts; follow the dataset authors' protocol.
 3. *CNN gate rejects an arrhythmia* (record 118, D17): a CNN trained on BUT QDB has never seen right bundle branch block, so it calls a perfectly clean RBBB recording unusable. Lesson: "unusual" and "noisy" look the same to a model that only saw normal beats. This is the same confound the AliveCor manual warns about (flutter and bigeminy reported as unreadable).
 
-**Interview questions**
+**Questions and answers**
 1. *Why might the simple rule gate transfer to MIT-BIH as well as gradient boosting?* It uses three thresholds on detector agreement, template correlation and baseline power, which mean the same thing on any ECG. The boosted model also uses finer, device-specific feature interactions learned on BUT QDB, which shift on a Holter recording from another lead and population.
 2. *How would you choose the rejection threshold for a product?* From the cost of each error: a false alarm (bad beat accepted) versus missing data (good beat rejected). Plot F1 or +P against coverage for different probability thresholds and pick the operating point the application can tolerate, then validate it on new subjects.
 3. *Why is a 95 % confidence interval that excludes zero not enough to claim the accelerometer helps?* The bootstrap interval is for the pooled score, which large subjects dominate; the per-subject test (9 better, 6 worse, p = 0.23) says the gain is not consistent across people. Both views are reported; neither alone is the whole story.

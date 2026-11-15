@@ -55,7 +55,7 @@ flowchart LR
 - **Pan-Tompkins** is implemented stage by stage from the paper (integer filters at 200 Hz, derivative, squaring, 150 ms integration, two adaptive thresholds, search-back, T-wave rejection). **Elgendi's two-moving-average detector** is the second, independent detector.
 - **Quality indices**: the agreement between the two detectors (bSQI), how alike the beats are (template correlation), kurtosis, skewness, spectral power ratios, heart-rate plausibility and more. All are scale-invariant, so the model also works on MIT-BIH.
 - **Classifiers**, in order of complexity: four tuned thresholds, gradient boosting, and a small 1D CNN (about 35k parameters, CPU-trained). Rare classes and long recordings are re-weighted.
-- The maths, design choices and interview questions for every part are in [docs/LEARNING.md](docs/LEARNING.md).
+- The maths, design choices and worked questions for every part are in [docs/LEARNING.md](docs/LEARNING.md).
 
 ## Results
 
