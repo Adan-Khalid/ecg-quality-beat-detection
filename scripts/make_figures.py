@@ -275,7 +275,7 @@ def fig_quality() -> None:
             ax.set(xlim=(0, 1.02), ylim=(0, 1.02), xlabel=f"{names[a]}: subject macro-F1",
                    ylabel=f"{names[b]}: subject macro-F1",
                    title=f"{c.get('subjects_improved', '?')} of {c.get('subjects', '?')} subjects "
-                         f"improve, Wilcoxon p = {c.get('wilcoxon_p', np.nan):.2f}")
+                         f"improve, Wilcoxon p = {c.get('wilcoxon_p', np.nan):.3f}")
             ax.text(0.02, 0.97, f"pooled macro-F1 change, 95% CI\n[{ci[0]:+.3f}, {ci[1]:+.3f}]",
                     transform=ax.transAxes, va="top", fontsize=9)
         fig.suptitle("Do accelerometer features help on unseen subjects? (point size = windows)",

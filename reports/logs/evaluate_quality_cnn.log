@@ -1,0 +1,57 @@
+2026-11-14 15:12:55 INFO python 3.12.10 on Windows-11-10.0.26300-SP0
+2026-11-14 15:12:57 INFO labelled windows: 26880  subjects: 15  records: 18  classes: {np.int64(1): np.int64(16284), np.int64(2): np.int64(10052), np.int64(3): np.int64(544)}
+2026-11-14 15:12:57 INFO fold: hold out subject 100 (8283 windows, classes [np.int64(1), np.int64(2), np.int64(3)])
+2026-11-14 15:14:36 INFO   cnn_ecg      subject macro-F1 0.746 (99 s)
+2026-11-14 15:16:18 INFO   cnn_ecg_acc  subject macro-F1 0.651 (101 s)
+2026-11-14 15:16:18 INFO fold: hold out subject 103 (515 windows, classes [np.int64(1), np.int64(2)])
+2026-11-14 15:17:57 INFO   cnn_ecg      subject macro-F1 0.887 (99 s)
+2026-11-14 15:19:46 INFO   cnn_ecg_acc  subject macro-F1 0.815 (109 s)
+2026-11-14 15:19:46 INFO fold: hold out subject 104 (195 windows, classes [np.int64(1), np.int64(2)])
+2026-11-14 15:21:29 INFO   cnn_ecg      subject macro-F1 0.883 (103 s)
+2026-11-14 15:23:18 INFO   cnn_ecg_acc  subject macro-F1 0.815 (109 s)
+2026-11-14 15:23:18 INFO fold: hold out subject 105 (8175 windows, classes [np.int64(1), np.int64(2), np.int64(3)])
+2026-11-14 15:25:22 INFO   cnn_ecg      subject macro-F1 0.768 (123 s)
+2026-11-14 15:27:01 INFO   cnn_ecg_acc  subject macro-F1 0.697 (99 s)
+2026-11-14 15:27:01 INFO fold: hold out subject 111 (7541 windows, classes [np.int64(1), np.int64(2), np.int64(3)])
+2026-11-14 15:29:13 INFO   cnn_ecg      subject macro-F1 0.649 (132 s)
+2026-11-14 15:32:07 INFO   cnn_ecg_acc  subject macro-F1 0.607 (174 s)
+2026-11-14 15:32:07 INFO fold: hold out subject 113 (249 windows, classes [np.int64(1), np.int64(2), np.int64(3)])
+2026-11-14 15:34:26 INFO   cnn_ecg      subject macro-F1 0.952 (139 s)
+2026-11-14 15:36:38 INFO   cnn_ecg_acc  subject macro-F1 0.813 (132 s)
+2026-11-14 15:36:38 INFO fold: hold out subject 114 (356 windows, classes [np.int64(1), np.int64(2), np.int64(3)])
+2026-11-14 15:38:39 INFO   cnn_ecg      subject macro-F1 0.992 (120 s)
+2026-11-14 15:40:50 INFO   cnn_ecg_acc  subject macro-F1 0.953 (131 s)
+2026-11-14 15:40:50 INFO fold: hold out subject 115 (162 windows, classes [np.int64(1), np.int64(2)])
+2026-11-14 15:42:40 INFO   cnn_ecg      subject macro-F1 0.938 (111 s)
+2026-11-14 15:44:41 INFO   cnn_ecg_acc  subject macro-F1 0.939 (121 s)
+2026-11-14 15:44:42 INFO fold: hold out subject 118 (175 windows, classes [np.int64(1), np.int64(2)])
+2026-11-14 15:46:37 INFO   cnn_ecg      subject macro-F1 0.993 (115 s)
+2026-11-14 15:48:37 INFO   cnn_ecg_acc  subject macro-F1 0.979 (120 s)
+2026-11-14 15:48:37 INFO fold: hold out subject 121 (155 windows, classes [np.int64(1), np.int64(2)])
+2026-11-14 15:50:32 INFO   cnn_ecg      subject macro-F1 0.804 (114 s)
+2026-11-14 15:52:29 INFO   cnn_ecg_acc  subject macro-F1 0.895 (118 s)
+2026-11-14 15:52:29 INFO fold: hold out subject 122 (227 windows, classes [np.int64(1), np.int64(2), np.int64(3)])
+2026-11-14 15:54:23 INFO   cnn_ecg      subject macro-F1 1.000 (114 s)
+2026-11-14 15:56:29 INFO   cnn_ecg_acc  subject macro-F1 0.954 (126 s)
+2026-11-14 15:56:29 INFO fold: hold out subject 123 (189 windows, classes [np.int64(1), np.int64(2)])
+2026-11-14 15:58:25 INFO   cnn_ecg      subject macro-F1 0.739 (116 s)
+2026-11-14 16:00:25 INFO   cnn_ecg_acc  subject macro-F1 0.782 (120 s)
+2026-11-14 16:00:25 INFO fold: hold out subject 124 (217 windows, classes [np.int64(1), np.int64(2), np.int64(3)])
+2026-11-14 16:02:23 INFO   cnn_ecg      subject macro-F1 0.893 (118 s)
+2026-11-14 16:04:30 INFO   cnn_ecg_acc  subject macro-F1 0.678 (127 s)
+2026-11-14 16:04:30 INFO fold: hold out subject 125 (225 windows, classes [np.int64(1)])
+2026-11-14 16:06:30 INFO   cnn_ecg      subject macro-F1 0.661 (120 s)
+2026-11-14 16:08:37 INFO   cnn_ecg_acc  subject macro-F1 0.665 (127 s)
+2026-11-14 16:08:38 INFO fold: hold out subject 126 (216 windows, classes [np.int64(1)])
+2026-11-14 16:10:36 INFO   cnn_ecg      subject macro-F1 0.998 (119 s)
+2026-11-14 16:12:35 INFO   cnn_ecg_acc  subject macro-F1 1.000 (118 s)
+2026-11-14 16:12:36 INFO rule         pooled macro-F1 0.634  mean subject 0.675  per-class {'1': 0.7882412116470128, '2': 0.5035033205385975, '3': 0.6098654708520179}
+2026-11-14 16:12:36 INFO gbm_ecg      pooled macro-F1 0.752  mean subject 0.796  per-class {'1': 0.867142166344294, '2': 0.759436849622526, '3': 0.6292134831460674}
+2026-11-14 16:12:36 INFO gbm_acc      pooled macro-F1 0.509  mean subject 0.644  per-class {'1': 0.8337675872850443, '2': 0.6779916138049672, '3': 0.014201183431952662}
+2026-11-14 16:12:37 INFO gbm_ecg_acc  pooled macro-F1 0.771  mean subject 0.819  per-class {'1': 0.8900719766819345, '2': 0.7906171284634761, '3': 0.6321626617375231}
+2026-11-14 16:12:37 INFO cnn_ecg      pooled macro-F1 0.736  mean subject 0.860  per-class {'1': 0.9124290444654684, '2': 0.7911724137931034, '3': 0.5046935394809497}
+2026-11-14 16:12:37 INFO cnn_ecg_acc  pooled macro-F1 0.723  mean subject 0.816  per-class {'1': 0.8952249294395485, '2': 0.7806004618937644, '3': 0.4933852140077821}
+2026-11-14 16:13:58 INFO gbm_ecg_acc vs gbm_ecg: {'a': 'gbm_ecg', 'b': 'gbm_ecg_acc', 'subjects': 15, 'mean_subject_diff': 0.022783781798547332, 'median_subject_diff': 0.009433344251555842, 'subjects_improved': 9, 'subjects_worse': 6, 'wilcoxon_p': 0.22930908203125, 'pooled_diff_bootstrap_ci95': [0.001800278401858252, 0.036674898122720505]}
+2026-11-14 16:15:16 INFO cnn_ecg_acc vs cnn_ecg: {'a': 'cnn_ecg', 'b': 'cnn_ecg_acc', 'subjects': 15, 'mean_subject_diff': -0.043883382545893454, 'median_subject_diff': -0.041964766908444195, 'subjects_improved': 5, 'subjects_worse': 10, 'wilcoxon_p': 0.04791259765625, 'pooled_diff_bootstrap_ci95': [-0.11457464321009453, 0.01978675107459985]}
+2026-11-14 16:16:36 INFO gbm_ecg vs rule: {'a': 'rule', 'b': 'gbm_ecg', 'subjects': 15, 'mean_subject_diff': 0.12068428078658347, 'median_subject_diff': 0.2156145453000332, 'subjects_improved': 9, 'subjects_worse': 6, 'wilcoxon_p': 0.083251953125, 'pooled_diff_bootstrap_ci95': [0.02941231341822657, 0.22889313856211654]}
+2026-11-14 16:17:54 INFO cnn_ecg vs gbm_ecg: {'a': 'gbm_ecg', 'b': 'cnn_ecg', 'subjects': 15, 'mean_subject_diff': 0.06396439477802832, 'median_subject_diff': 0.011764321427404356, 'subjects_improved': 10, 'subjects_worse': 4, 'wilcoxon_p': 0.19812291175396723, 'pooled_diff_bootstrap_ci95': [-0.05315269257751132, 0.09792162395612855]}
