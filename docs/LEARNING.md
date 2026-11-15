@@ -121,7 +121,7 @@ Code: `src/ecgq/quality/models.py`, results: `reports/metrics/quality_loso_summa
 
 **Gradient boosting** (`HistGradientBoostingClassifier`): an additive model of shallow trees, F_m(x) = F_{m-1}(x) + eta * h_m(x), where each tree h_m fits the negative gradient of the multinomial log-loss. Learning rate 0.05, 300 trees, at most 31 leaves, at least 40 samples per leaf, L2 regularisation 1. Features are binned into histograms (fast). It handles non-linear interactions between SQIs that fixed thresholds cannot.
 
-**1D CNN**: four blocks of (convolution, batch norm, ReLU, max-pool by 2) with 16, 32, 64, 64 channels and kernels 7, 7, 5, 5. Then global average and global max pooling (concatenated, 128 values), dropout 0.3, and a linear layer to 3 classes. About 45k parameters. Input: 10 s at 100 Hz, ECG scaled by its median and interquartile range, optional three accelerometer channels. Trained with AdamW (lr 1e-3, weight decay 1e-3), cosine learning-rate decay, 8 epochs of 12,000 windows drawn with class-and-record-balanced probabilities. Augmentation: polarity flip, amplitude scaling 0.8 to 1.2, small Gaussian noise.
+**1D CNN**: four blocks of (convolution, batch norm, ReLU, max-pool by 2) with 16, 32, 64, 64 channels and kernels 7, 7, 5, 5. Then global average and global max pooling (concatenated, 128 values), dropout 0.3, and a linear layer to 3 classes. About 35k parameters. Input: 10 s at 100 Hz, ECG scaled by its median and interquartile range, optional three accelerometer channels. Trained with AdamW (lr 1e-3, weight decay 1e-3), cosine learning-rate decay, 6 epochs of 8,000 windows drawn with class-and-record-balanced probabilities. Augmentation: polarity flip, amplitude scaling 0.8 to 1.2, small Gaussian noise.
 
 **Class imbalance and long records** (D8): sample weight = 1/(class count) x 1/sqrt(record count), normalised.
 
@@ -143,7 +143,8 @@ Code: `scripts/evaluate_quality.py`.
 **Interview questions**
 1. *Why not split windows at random?* Adjacent windows of the same person are nearly identical; the model can memorise the person and the score says nothing about new users. Several published BUT QDB results have this problem.
 2. *Why bootstrap subjects, not windows?* Windows within a subject are not independent. Resampling windows would treat 30,000 correlated windows as independent evidence and give a falsely narrow interval; the real sample size is 15 subjects.
-3. *What would you conclude from p = 0.3 with a confidence interval spanning zero?* No evidence of an effect at this sample size, which is not evidence of no effect. Report the interval: it shows how large an effect the data can still rule out.
+3. *What did this project conclude about the accelerometer?* With gradient boosting: a small pooled gain, CI [+0.002, +0.037], but only 9 of 15 subjects improved (p = 0.23). With the CNN: worse for 10 of 15 subjects (p = 0.048). So no consistent benefit on unseen people; the likely reason is that most class 3 ECG here happens while the person is still.
+4. *What would you conclude from p = 0.3 with a confidence interval spanning zero?* No evidence of an effect at this sample size, which is not evidence of no effect. Report the interval: it shows how large an effect the data can still rule out.
 
 ---
 
@@ -155,3 +156,21 @@ Code: `scripts/evaluate_quality.py`.
 - Timing error of matched beats is reported too, because a 150 ms window hides timing problems (Porr and Macfarlane 2024).
 
 **Interview question**: *Why is the gross (pooled) Se different from the average of per-record Se?* Pooling weights each record by its number of beats; averaging per record weights every record equally, so a short, difficult record moves the average more. EC57 asks for both.
+
+---
+
+## 9. The quality gate, and three things that went wrong
+
+Code: `scripts/evaluate_rejection.py`, figure: `reports/figures/rejection_nstdb.png`, numbers: `reports/results_tables.md`.
+
+**The gate**: score every 10 s window, drop class 3 windows, run beat detection only on the rest. On the noise stress test database (MIT-BIH 118 and 119 with electrode-motion noise), Pan-Tompkins F1 at 0 dB rises from 0.814 to 0.910 with the GBM gate, keeping 72 % of beats, and no clean window is rejected. The trade-off is coverage: you lose the beats in rejected windows. An "oracle" that knows exactly where noise was added shows the ceiling.
+
+**What went wrong, and what each one teaches**
+1. *Pan-Tompkins search-back bug* (record 117, D2): one wrong early beat poisoned the RR average. Lesson: adaptive algorithms need their start-up handled; sort results per record to find failures.
+2. *Mislabelled-looking class 3* (record 105001, D14): 13 hours of a detached device made class 3 look easy (F1 0.96). After using the authors' benchmark ranges, class 3 F1 is 0.63. Lesson: plot the whole recording before trusting label counts; follow the dataset authors' protocol.
+3. *CNN gate rejects an arrhythmia* (record 118, D17): a CNN trained on BUT QDB has never seen right bundle branch block, so it calls a perfectly clean RBBB recording unusable. Lesson: "unusual" and "noisy" look the same to a model that only saw normal beats. This is the same confound the AliveCor manual warns about (flutter and bigeminy reported as unreadable).
+
+**Interview questions**
+1. *Why might the simple rule gate transfer to MIT-BIH as well as gradient boosting?* It uses three thresholds on detector agreement, template correlation and baseline power, which mean the same thing on any ECG. The boosted model also uses finer, device-specific feature interactions learned on BUT QDB, which shift on a Holter recording from another lead and population.
+2. *How would you choose the rejection threshold for a product?* From the cost of each error: a false alarm (bad beat accepted) versus missing data (good beat rejected). Plot F1 or +P against coverage for different probability thresholds and pick the operating point the application can tolerate, then validate it on new subjects.
+3. *Why is a 95 % confidence interval that excludes zero not enough to claim the accelerometer helps?* The bootstrap interval is for the pooled score, which large subjects dominate; the per-subject test (9 better, 6 worse, p = 0.23) says the gain is not consistent across people. Both views are reported; neither alone is the whole story.

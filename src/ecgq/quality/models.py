@@ -101,7 +101,7 @@ def make_gbm(seed: int = 0) -> HistGradientBoostingClassifier:
 
 
 def build_cnn(in_channels: int, n_classes: int = 3):
-    """Small 1D CNN (about 45k parameters) for 10 s windows at 100 Hz.
+    """Small 1D CNN (about 35k parameters) for 10 s windows at 100 Hz.
 
     Four conv blocks (conv, batch norm, ReLU, max-pool) widen the receptive field to about
     1.5 s, enough to see one or two beats and the noise around them. Global average and max

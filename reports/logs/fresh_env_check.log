@@ -1,0 +1,16 @@
+== uv sync
+ + wfdb==4.3.1
+ + yarl==1.25.1
+== ruff
+All checks passed!
+== pytest
+......................................                                   [100%]
+== download mitdb
+[mitdb] complete
+== evaluate_qrs
+INFO all_records ec57 elgendi       Se=0.9967 +P=0.9946 F1=0.9957 (TP=5519 FP=30 FN=18) timing MAE 5.1 ms, 0.4s
+INFO all_records ec57 pan_tompkins  Se=0.9893 +P=0.9517 F1=0.9702 (TP=5478 FP=278 FN=59) timing MAE 1.8 ms, 3.2s
+INFO all_records ec57 wfdb_xqrs     Se=0.9877 +P=0.9687 F1=0.9781 (TP=5469 FP=177 FN=68) timing MAE 6.2 ms, 34.6s
+INFO non_paced_records ec57 elgendi       Se=0.9967 +P=0.9946 F1=0.9957 (TP=5519 FP=30 FN=18) timing MAE 5.1 ms, 0.4s
+INFO non_paced_records ec57 pan_tompkins  Se=0.9893 +P=0.9517 F1=0.9702 (TP=5478 FP=278 FN=59) timing MAE 1.8 ms, 3.2s
+INFO non_paced_records ec57 wfdb_xqrs     Se=0.9877 +P=0.9687 F1=0.9781 (TP=5469 FP=177 FN=68) timing MAE 6.2 ms, 34.6s

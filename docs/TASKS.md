@@ -28,18 +28,25 @@ Small, ordered tasks. Ticked items are done and committed.
 ## Phase 4: validation
 - [x] Detectors on all 48 MIT-BIH records (EC57 and whole-record protocols)
 - [x] Find and fix the Pan-Tompkins search-back bug (record 117)
-- [ ] Build features for all 18 BUT QDB records
-- [ ] LOSO evaluation of all six quality models
-- [ ] Research question: paired test and bootstrap interval
-- [ ] Official fixed split, sample-level scores
-- [ ] Quality gate on the noise stress test database
+- [x] Build features for all 18 BUT QDB records
+- [x] LOSO evaluation of all six quality models
+- [x] Research question: paired test and bootstrap interval
+- [x] Official fixed split, sample-level scores
+- [x] Restrict labels to the authors' annotated ranges (105001 off-body stretch, D14)
+- [x] Quality gate on the noise stress test database
 
 ## Phase 5: demo
-- [ ] Held-out predictions for every window of every recording
-- [ ] Day-long figure, hero GIF and MP4
-- [ ] Streamlit explorer and screenshots
+- [x] Held-out predictions for every window of every recording
+- [x] Day-long figure, hero GIF and MP4
+- [x] Streamlit explorer and screenshots
 
 ## Phase 6: release (preparation only, nothing uploaded)
-- [ ] README from the template with numbers read from `reports/`
-- [ ] Social preview image, CITATION.cff, release notes
-- [ ] Fresh-environment install and test run
+- [x] README from the template with numbers read from `reports/`
+- [x] Social preview image, CITATION.cff, release notes
+- [x] Fresh-environment install and test run
+
+## Left for Adan (on hold by request)
+- [ ] Refresh the GitHub CLI login with the `workflow` scope, then create the repo and push
+- [ ] Tag and release v1.0.0
+- [ ] Upload `assets/social-preview.png` in the repo settings and pin the repo
+- [ ] LinkedIn release post (`/linkedin`)

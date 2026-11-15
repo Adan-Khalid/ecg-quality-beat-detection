@@ -27,3 +27,6 @@ Thumbs.db
 
 # Local environment
 .env
+
+# Local server logs (contain network addresses)
+reports/logs/streamlit*.log

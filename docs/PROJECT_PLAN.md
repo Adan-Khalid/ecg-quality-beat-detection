@@ -95,5 +95,5 @@ Leave-one-subject-out over 15 subjects: all records of a subject are held out to
 | Few class 3 windows, so class 3 F1 is unstable | Class weights; report per-class F1 and per-subject results; confidence intervals |
 | Three long records dominate | Per-record weights in training; per-subject metrics |
 | Domain shift from BUT QDB to MIT-BIH in the gate test | Scale-invariant features only; transfer reported as a finding, not hidden |
-| No GPU on this laptop | Small CNN (about 45k parameters), 10 s windows at 100 Hz, CPU training |
+| No GPU on this laptop | Small CNN (about 35k parameters), 10 s windows at 100 Hz, CPU training |
 | Download of 4.2 GB over a slow link | Resumable, checksum-verified download script |

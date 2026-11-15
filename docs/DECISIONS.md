@@ -44,7 +44,7 @@ Fixed literature thresholds (for example bSQI 0.9) were rejected because the thr
 
 ## D11. Small CPU CNN
 
-This laptop has no CUDA GPU (Intel UHD graphics, i7-10610U). The CNN has four conv blocks and about 45k parameters, takes 10 s at 100 Hz, and trains for 8 epochs of 12,000 weighted samples. Augmentation: ECG polarity flip (lead placement differs between people), amplitude scaling and small noise.
+This laptop has no CUDA GPU (Intel UHD graphics, i7-10610U). The CNN has four conv blocks and about 35k parameters, takes 10 s at 100 Hz, and trains for 6 epochs of 8,000 weighted samples (D15). Augmentation: ECG polarity flip (lead placement differs between people), amplitude scaling and small noise.
 
 ## D12. Quality gate test on NSTDB, not BUT QDB
 
@@ -61,3 +61,11 @@ The consensus CSV of record 105001 labels its first 13.1 hours as class 3. In th
 ## D15. CNN compute budget
 
 Each CNN is trained 15 times (once per held-out subject) on a 4-core laptop CPU. Training uses 6 epochs of 8,000 weighted samples (batch 128), fixed before seeing any result, so a full CNN evaluation runs in about an hour. More epochs might help the CNN; that is listed as a next step, not tuned on the test folds.
+
+## D16. Noise location in NSTDB from the per-window standard deviation
+
+NSTDB records are MIT-BIH 118 and 119 plus calibrated noise, but the stored signals also differ from the originals by a DC offset (about 5 mV) that changes between noise blocks. The oracle gate uses the per-window standard deviation of (NSTDB minus clean), which ignores the offset; it is exactly zero outside the noise blocks.
+
+## D17. CNN gate reported, not plotted
+
+The ECG-only CNN rejects all of MIT-BIH record 118 (right bundle branch block), clean minutes included, because that QRS shape never occurs in BUT QDB. Its gate numbers mix that failure with real noise rejection, so they are kept in the tables with this explanation and left out of `reports/figures/rejection_nstdb.png`. The feature-based gates do not have this problem.
