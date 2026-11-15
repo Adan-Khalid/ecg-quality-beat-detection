@@ -69,7 +69,7 @@ Every run that produced a number, in order. Config files are in `configs/`, seed
 
 - Config: `configs/rejection_nstdb.yaml`. Models: `scripts/train_final.py` (all 15 subjects, CNN 6 epochs x 8,000 samples). Command: `python scripts/evaluate_rejection.py`
 - First run had a broken oracle: NSTDB files carry a different DC offset from MIT-BIH, so subtracting the clean record marked every window as noisy. Fixed by using the per-window standard deviation of the difference (D16); the documented schedule (noise from minute 5, 2 min on, 2 min off) is then recovered exactly.
-- Results (`reports/metrics/rejection_nstdb_summary.json`): Pan-Tompkins F1 without a gate falls from 1.000 (clean) to 0.861 (6 dB), 0.814 (0 dB) and 0.743 (-6 dB). The GBM gate raises it to 0.914, 0.910 and 0.839 while keeping 82 %, 72 % and 73 % of beats; the rule gate to 0.951, 0.919 and 0.828 (72 %, 68 %, 73 % kept). Neither rejects any clean window.
+- Results (`reports/metrics/rejection_nstdb_summary.json`): Pan-Tompkins F1 without a gate falls from 1.000 (clean) to 0.861 (6 dB), 0.814 (0 dB) and 0.743 (-6 dB). The GBM gate raises it to 0.914, 0.910 and 0.839 while keeping 82 %, 72 % and 73 % of beats; the rule gate to 0.951, 0.919 and 0.828 (72 %, 68 %, 73 % kept). Neither gate rejects clean windows down to 0 dB; at -6 dB the GBM gate rejects 0.5 % and the rule gate 6 % of them.
 - The ECG-only CNN gate rejects all of record 118 (right bundle branch block: a wide, notched QRS never seen in BUT QDB) including its clean minutes, and works as intended on record 119. It confuses unfamiliar morphology with noise.
 
 ## E9. 1D CNN, LOSO

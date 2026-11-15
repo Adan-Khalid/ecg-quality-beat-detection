@@ -2,14 +2,14 @@
 
 # ECG signal quality and beat detection
 
-**A quality gate for wearable ECG that labels every 10 s as clean, QRS-only or unusable on people it has never seen (macro-F1 0.77 vs 0.63 for a rule-based baseline), with a Pan-Tompkins detector written from the 1985 paper (Se 99.68 %, +P 99.47 % on MIT-BIH).**
+**Tells a wearable ECG device which stretches of signal it can trust (clean, heartbeats only, or unusable), tested on people the model never saw: macro-F1 0.77 against 0.63 for a rule-based baseline. Includes a heartbeat detector written from the classic 1985 Pan-Tompkins paper that finds 99.68 % of beats on MIT-BIH.**
 
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![CI](https://github.com/Adan-Khalid/ecg-quality-beat-detection/actions/workflows/ci.yml/badge.svg)
 
 <p align="center">
-  <img src="assets/hero.gif" alt="Scrolling wearable ECG with accelerometer below: during movement the signal stays usable and the model says class 2, then the ECG breaks down and the model switches to class 3 (unusable), matching the expert label" width="760">
+  <img src="assets/hero.gif" alt="Scrolling wearable ECG with accelerometer below: during movement the signal stays usable and the model says class 2, then the ECG breaks down and the model switches to class 3 (unusable), matching the expert label" width="640">
 </p>
 <p align="center"><em>BUT QDB record 114001, 90 s: the model (trained without this person) moves from "QRS only" to "unusable" as the ECG breaks down, matching the experts.</em></p>
 
@@ -69,7 +69,7 @@ flowchart LR
 <p align="center">
   <img src="reports/figures/qrs_mitdb_per_record.png" alt="Per-record F1 for the three detectors on all 48 MIT-BIH records, sorted by Pan-Tompkins F1; most records are above 0.99, record 108 is lowest" width="760">
 </p>
-<p align="center"><em>F1 per record. Both detectors written here match or beat the WFDB library detector; record 108 (large P waves, noise) is hardest for Pan-Tompkins.</em></p>
+<p align="center"><em>F1 per record. Overall, both detectors written here score at least the F1 of the WFDB library detector; per record each has its own hard cases, and record 108 (large P waves, noise) is hardest for Pan-Tompkins.</em></p>
 
 | Detector | Protocol | Se | +P | F1 | Timing MAE | Run time, 48 records |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -84,7 +84,7 @@ flowchart LR
 <p align="center">
   <img src="reports/figures/quality_model_comparison.png" alt="Bar chart of per-class F1 and macro-F1 for six models; gradient boosting with ECG and accelerometer features has the highest macro-F1, 0.77, against 0.63 for the rule-based baseline" width="760">
 </p>
-<p align="center"><em>Pooled F1 over the 15 held-out subjects. Every learned ECG model beats the rule-based baseline; class 3 (unusable) stays the hardest class.</em></p>
+<p align="center"><em>Pooled F1 over the 15 held-out subjects. Every learned ECG model has a higher macro-F1 than the rule-based baseline, but the CNNs are worse than the rules on class 3 (unusable), which stays the hardest class.</em></p>
 
 <p align="center">
   <img src="reports/figures/quality_confusion.png" alt="Three confusion matrices: rule-based, gradient boosting with ECG and accelerometer, and 1D CNN with ECG and accelerometer" width="780">
@@ -137,7 +137,7 @@ Answer, based on this data: **no consistent benefit**. Hand-made motion features
 <p align="center">
   <img src="reports/figures/rejection_nstdb.png" alt="Three panels against noise level from clean to minus 6 dB: precision and sensitivity of Pan-Tompkins on kept windows, and the share of beats kept, for no gate, the rule gate, the gradient-boosting gate and an oracle" width="780">
 </p>
-<p align="center"><em>MIT-BIH noise stress test (records 118 and 119 with electrode-motion noise): the gates keep every clean window and lift precision as noise grows. Models were trained only on BUT QDB.</em></p>
+<p align="center"><em>MIT-BIH noise stress test (records 118 and 119 with electrode-motion noise): both gates lift precision as noise grows. Neither gate drops clean windows down to 0 dB; at -6 dB the GBM gate drops 0.5 % and the rule gate 6 % of them. Models were trained only on BUT QDB.</em></p>
 
 | SNR | No gate F1 | Rule gate F1 (beats kept) | GBM gate F1 (beats kept) | Oracle F1 (beats kept) |
 | --- | --- | --- | --- | --- |
@@ -164,7 +164,7 @@ Answer, based on this data: **no consistent benefit**. Hand-made motion features
 <p align="center">
   <img src="reports/figures/day_quality_105001.png" alt="38.6 hours of record 105001: predicted quality band, expert label band, accelerometer motion and heart rate, with one example 10 s strip for each class" width="800">
 </p>
-<p align="center"><em>A day and a half of free-living ECG coloured by predicted quality, next to the experts' labels and the motion recorded by the patch.</em></p>
+<p align="center"><em>A day and a half of free-living ECG coloured by predicted quality, next to the experts' labels and the motion recorded by the patch. In the first 13 h the patch was apparently off the body: the model calls it unusable, and the experts' benchmark leaves it out (grey).</em></p>
 
 An interactive explorer shows any recording, its quality timeline, and a zoomable ECG strip with the quality indices and model confidence for each window:
 
@@ -201,8 +201,14 @@ uv run python scripts/evaluate_fixed_split.py
 uv run python scripts/train_final.py
 uv run python scripts/evaluate_rejection.py
 uv run python scripts/predict_all.py
+uv run python scripts/count_windows.py
 uv run python scripts/make_figures.py all
 uv run python scripts/make_tables.py
+
+# Demo visuals
+uv run python scripts/make_demo.py day --record 105001
+uv run python scripts/make_demo.py gif --record 114001 --start-window 1124 --seconds 90 --step 0.75
+uv run python scripts/make_social_preview.py
 ```
 
 ## Data
@@ -218,7 +224,7 @@ Raw data is not in this repository. See [data/README.md](data/README.md) and [do
 ## Limitations and next steps
 
 - **Small and narrow data.** 15 subjects, one patch (Bittium Faros 180), one lead position, one country. Results may not hold for wrist ECG or other populations.
-- **Class 3 is rare.** 544 of 26,880 labelled windows, from 7 subjects, so class 3 scores have wide uncertainty.
+- **Class 3 is rare.** 544 of 26,880 labelled windows, from 7 subjects, so class 3 scores have wide uncertainty. Short unusable episodes inside a mostly clean day are the hardest case: in subject 100 (24 h, 20 class 3 windows) gradient boosting finds 1 of them and the CNN 14 (`reports/metrics/quality_loso_predictions.csv.gz`).
 - **Abnormal rhythms.** BUT QDB is mostly sinus rhythm. The CNN rejected a clean bundle branch block recording; any model here should be checked on arrhythmias before use.
 - **Offline only.** Zero-phase filters and 10 s windows; not a real-time or embedded implementation.
 - **No MATLAB cross-check.** MATLAB was not available; the filters are cross-checked in Python against the paper's equations instead.

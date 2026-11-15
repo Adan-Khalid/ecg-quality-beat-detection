@@ -30,3 +30,4 @@ Thumbs.db
 
 # Local server logs (contain network addresses)
 reports/logs/streamlit*.log
+reports/logs/uv_sync.log

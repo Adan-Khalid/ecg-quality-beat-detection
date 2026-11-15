@@ -110,8 +110,8 @@ def gate_table() -> str:
         rn = d["gbm_ecg"]["reject_rate_noisy"]
         rows.append(f"| {label} | {d['none']['f1']:.3f} | {fc('rule')} | {fc('gbm_ecg')} | "
                     f"{fc('cnn_ecg')} | {fc('oracle')} | "
-                    f"{'n/a' if rn != rn else f'{100 * rn:.0f} %'} | "
-                    f"{100 * d['gbm_ecg']['reject_rate_clean']:.0f} % |")
+                    f"{'n/a' if rn != rn else f'{100 * rn:.1f} %'} | "
+                    f"{100 * d['gbm_ecg']['reject_rate_clean']:.1f} % |")
     return "\n".join(rows)
 
 

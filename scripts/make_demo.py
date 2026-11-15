@@ -84,7 +84,8 @@ def fig_day(record: str) -> Path:
     rng = np.random.default_rng(0)
     for k, c in enumerate((1, 2, 3)):
         ax = fig.add_subplot(gs[5, k])
-        cand = np.flatnonzero((pred == c) & (lab == c))
+        # Examples only where the model agrees with an expert label inside the official ranges.
+        cand = np.flatnonzero((pred == c) & (lab_show == c))
         if len(cand) == 0:
             cand = np.flatnonzero(pred == c)
         if len(cand) == 0:

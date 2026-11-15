@@ -15,4 +15,4 @@
 2026-11-14 15:11:28 INFO     epoch 4 loss 0.2043
 2026-11-14 15:11:40 INFO     epoch 5 loss 0.1885
 2026-11-14 15:11:54 INFO     epoch 6 loss 0.1767
-2026-11-14 15:11:54 INFO saved models to C:\Users\ADMIN\portfolio\projects\ecg-quality-beat-detection\models
+2026-11-14 15:11:54 INFO saved models to models

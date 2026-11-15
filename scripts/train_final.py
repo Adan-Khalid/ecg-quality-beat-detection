@@ -52,7 +52,7 @@ def main(argv=None) -> int:
     save_json({"rule_thresholds": rule.params(), "n_windows": int(len(d)),
                "n_subjects": int(len(np.unique(d.subject)))},
               REPO_ROOT / cfg["out_dir"] / "metrics" / "final_models.json")
-    log.info("saved models to %s", out)
+    log.info("saved models to %s", out.relative_to(REPO_ROOT))
     return 0
 
 

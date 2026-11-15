@@ -261,7 +261,8 @@ def fig_quality() -> None:
     pairs = [(a, b) for a, b in (("gbm_ecg", "gbm_ecg_acc"), ("cnn_ecg", "cnn_ecg_acc"))
              if a in per.columns and b in per.columns]
     if pairs:
-        fig, axs = plt.subplots(1, len(pairs), figsize=(5.2 * len(pairs), 4.6))
+        fig, axs = plt.subplots(1, len(pairs), figsize=(5.6 * len(pairs), 5.0))
+        fig.subplots_adjust(wspace=0.3)
         axs = np.atleast_1d(axs)
         for ax, (a, b) in zip(axs, pairs, strict=True):
             c = summ["comparisons"].get(f"{b}_vs_{a}", {})
@@ -275,7 +276,7 @@ def fig_quality() -> None:
             ax.set(xlim=(0, 1.02), ylim=(0, 1.02), xlabel=f"{names[a]}: subject macro-F1",
                    ylabel=f"{names[b]}: subject macro-F1",
                    title=f"{c.get('subjects_improved', '?')} of {c.get('subjects', '?')} subjects "
-                         f"improve, Wilcoxon p = {c.get('wilcoxon_p', np.nan):.3f}")
+                         f"improve\nWilcoxon p = {c.get('wilcoxon_p', np.nan):.3f}")
             ax.text(0.02, 0.97, f"pooled macro-F1 change, 95% CI\n[{ci[0]:+.3f}, {ci[1]:+.3f}]",
                     transform=ax.transAxes, va="top", fontsize=9)
         fig.suptitle("Do accelerometer features help on unseen subjects? (point size = windows)",
