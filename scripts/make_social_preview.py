@@ -22,7 +22,7 @@ MET = REPO_ROOT / "reports" / "metrics"
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--record", default="100001")
+    ap.add_argument("--record", default="111001")
     ap.add_argument("--model", default="gbm_ecg_acc")
     args = ap.parse_args(argv)
     use_style()
@@ -51,7 +51,7 @@ def main(argv=None) -> int:
     ]
     for i, t in enumerate(lines):
         fig.text(0.05, 0.62 - 0.07 * i, t, color="#E2E8F0", fontsize=16)
-    ax = fig.add_axes((0.05, 0.12, 0.90, 0.24))
+    ax = fig.add_axes((0.05, 0.22, 0.90, 0.2))
     cmap = ListedColormap([QUALITY_COLORS[k] for k in (0, 1, 2, 3)])
     ax.imshow(pred[None, :], aspect="auto", cmap=cmap, vmin=0, vmax=3, interpolation="nearest",
               extent=(0, len(pred) * win / 3600, 0, 1))
@@ -64,12 +64,13 @@ def main(argv=None) -> int:
     ax.set_xlabel(f"{len(pred) * win / 3600:.0f} hours of free-living ECG (BUT QDB "
                   f"{args.record}), quality predicted by a held-out model", color="#CBD5E1",
                   fontsize=12)
-    fig.text(0.05, 0.035, "green: clean   orange: QRS only   red: unusable        "
+    fig.text(0.05, 0.04, "green: clean   orange: QRS only   red: unusable        "
              "Python, SciPy, scikit-learn, PyTorch", color="#94A3B8", fontsize=11)
     out = REPO_ROOT / "assets" / "social-preview.png"
-    fig.savefig(out, dpi=100, facecolor=fig.get_facecolor(), bbox_inches=None)
-    fig.savefig(REPO_ROOT / "assets" / "thumb.png", dpi=25, facecolor=fig.get_facecolor(),
-                bbox_inches=None)
+    # The shared style crops figures ("tight"); this image must be exactly 1280 x 640.
+    with plt.rc_context({"savefig.bbox": "standard"}):
+        fig.savefig(out, dpi=100, facecolor=fig.get_facecolor())
+        fig.savefig(REPO_ROOT / "assets" / "thumb.png", dpi=25, facecolor=fig.get_facecolor())
     plt.close(fig)
     print(out)
     return 0
